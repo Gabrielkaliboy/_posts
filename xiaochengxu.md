@@ -10,5 +10,3 @@ tags: [小程序]
 <The rest of contents | 余下全文>
 
 -----
-![](xiaochengxu/1.jpg)
-hahah
