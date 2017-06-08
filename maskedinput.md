@@ -5,7 +5,7 @@ categories: 前端
 tags: [jQuery,前端开发插件,html,表单样式优化]
 ---
 <Excerpt in index | 首页摘要> 
-maskedinput使用说明
+**masked-input**是一个字符输入格式化的jQuery插件。它可让你轻松的实现对各种数据的输入进行格式限制，如日期、电话等。masked-input在ie,Firefox,Safari和Chrome通过测试。mask会自动为用户输入类型占位符且用户将不能删除。以下为占位符的代表意义。
 <!-- more -->
 <The rest of contents | 余下全文>
 
