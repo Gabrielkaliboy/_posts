@@ -40,8 +40,6 @@ My97 DatePicker 也称作WdatePicker,一款开源的，功能强大的日期控�
 </html>
 ```
 
-项目开发中经常用到的一些场景
-----
 #### 3.限制用户只能选择今天以前的时间
 ![](WdatePicker/2.gif)
 ```html

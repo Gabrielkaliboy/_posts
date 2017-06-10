@@ -1,7 +1,7 @@
 ---
 title: 你不知道的电脑黑科技
 date: 2017-06-10 13:52:40
-categories: 奇淫技巧
+categories: 黑科技
 tags: [奇淫技巧,冷知识]
 ---
 <Excerpt in index | 首页摘要> 
@@ -20,10 +20,10 @@ tags: [奇淫技巧,冷知识]
 #### 3. 复制文件的路径，在要复制的文件上单击选中，然后按住shift键的同时右击，这时候在右击选择菜单中会出现复制为路径
 ![测试](unknownComputerTechnology/2.gif)
 #### 4. 如何不通过加密软件对我们的文件进行加密
-- #### 新建一个test文件夹，名字随意，在这个文件夹新建一个文本文档，比如lock,如图
+##### 4.1新建一个test文件夹，名字随意，在这个文件夹新建一个文本文档，比如lock,如图
 
     ![测试](unknownComputerTechnology/1.png)
-- #### 用编辑器打开lock.txt文本文档，里面写入如下代码
+##### 4.2用编辑器打开lock.txt文本文档，里面写入如下代码
 ```shell
 cls
 @ECHO OFF
@@ -102,14 +102,14 @@ goto End
 :End
 ```
 
-- #### 然后将lock.txt改为lock.bat,注意后缀发生了变化。之后双击lock.bat，他会自动在lock.bat所在的目录生成一个Private目录，如图
+##### 4.3然后将lock.txt改为lock.bat,注意后缀发生了变化。之后双击lock.bat，他会自动在lock.bat所在的目录生成一个Private目录，如图
 
     ![测试](unknownComputerTechnology/2.png)
 
-- #### 将我们要加密的文件扔进Private文件就可以了，然后再次点击lock.bat,这时会弹出cmd命令让你确认，如图我们输入Y
+##### 4.4将我们要加密的文件扔进Private文件就可以了，然后再次点击lock.bat,这时会弹出cmd命令让你确认，如图我们输入Y
 	![测试](unknownComputerTechnology/3.png)
 
-- #### 输入Y以后Private目录直接就被隐藏了，然后我们再次双击lock.bat,他会要求我们输入密码，我们输入我们上面设置的密码，回车以后如果密码正确，Private文件就又出来了
+##### 4.5输入Y以后Private目录直接就被隐藏了，然后我们再次双击lock.bat,他会要求我们输入密码，我们输入我们上面设置的密码，回车以后如果密码正确，Private文件就又出来了
 
 	![测试](unknownComputerTechnology/3.png)
 
@@ -135,7 +135,7 @@ goto End
 ![](unknownComputerTechnology/7.gif)
 当然，如果你想删除在快速导航里面的文件夹，只需要在第一步反过来就好
 
-#### 10. 
+#### 10. 窗口调整
 “Win键+方向键”
 “Win键+↑” 最大化
 “Win键+↓” 最小化
@@ -161,7 +161,7 @@ goto End
 #### 15.F5在文本文档一键嵌入当前日期和时间
 ![](unknownComputerTechnology/12.gif)
 
-#### 16.
+#### 16.win+home
 如果你屏幕上有很多窗口都最大化了，虽然你只能看到当前的程序，但是被挡在后面最大化的窗口也会占用很多系统资源，这时候如果你按下Win+Home，就可以将除当前窗口外其他所有程序都最小化，节约系统资源快速有效（Win7也适用唷~）
 
 #### 17.F5在文本文档一键嵌入当前日期和时间
@@ -203,8 +203,13 @@ win+R ，输入snippingtool,就打开了
 这里我想实现隐藏桌面所有图标，然后在需要的时候在把图标显示出来，（为了装逼），但是鼠标单击太麻烦了，那我们就直接用快捷键
 键盘鼠标右键+V+D
 
+#### 30.win10设置里可以设置按这三个键有提示音Caps Lock（大小写锁定键）Num Lock（数字键盘的开关键）Scroll Lock（滚动锁定键）
+开始-->设置--->轻松使用--->键盘
+![](unknownComputerTechnology/7.png)
 
-#### 13.Windows快捷键部分
+
+
+#### Windows快捷键部分
 官网给出的说明：https://support.microsoft.com/zh-cn/help/12445/windows-keyboard-shortcuts#keyboard-shortcuts=windows-8
 - Ctrl+shift+N:快速新建文件夹
 - Ctrl+shift+Esc:任务管理器
@@ -218,5 +223,3 @@ win+R ，输入snippingtool,就打开了
 - Windows+B将操作区域移动到右下角的系统托盘，可以在没有鼠标的时候救急一下
 ![](unknownComputerTechnology/17.gif)
 
-
-11页
