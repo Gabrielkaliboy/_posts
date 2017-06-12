@@ -123,5 +123,6 @@ GitHub：https://github.com/jquery-validation/jquery-validation
 
 
 #### 3.一个完整的注册示例（没有验证码）
-GitHub地址：https://github.com/Gabrielkaliboy/markdown/tree/master/%E6%BA%90%E7%A0%81/jQuery-validate/register
+GitHub地址：https://github.com/Gabrielkaliboy/markdown/tree/master/demo/jQuery-validate/register
+
 ![](jQueryValidate/1.gif);
