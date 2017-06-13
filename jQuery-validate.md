@@ -126,3 +126,25 @@ GitHub：https://github.com/jquery-validation/jquery-validation
 GitHub地址：https://github.com/Gabrielkaliboy/markdown/tree/master/demo/jQuery-validate/register
 
 ![](jQueryValidate/1.gif);
+
+#### 4.分步校验(版权所有，转载注明出处)
+GitHub地址：
+
+![](jQueryValidate/2.gif);
+
+#### 5.注意事项
+##### 5.1关于select的required校验问题
+只要select里面的第一个option没有value值，就可以进行校验，应为这时候value是空，用户相当于没有输入
+```html
+<select name="detailBusiness" id="detailBusiness">
+    <option value="">选择行业</option>
+    <option value="1">计算机硬件及网络设备</option>
+    <option value="2">计算机软件</option>
+    <option value="3">IT服务（系统/数据/维护）</option>
+    <option value="4">互联网/电子商务</option>
+    <option value="5">通讯（设备/运营/增资服务）</option>
+    <option value="6">电子技术/半导体/集成电路</option>
+<select>
+```
+##### 5.2radio 和 checkbox、select 的验证
+建议查看http://www.runoob.com/jquery/jquery-plugin-validate.html
