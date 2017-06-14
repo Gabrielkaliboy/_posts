@@ -5,6 +5,7 @@ categories: 前端
 tags: [jQuery,前端开发插件,javascript]
 ---
 <Excerpt in index | 首页摘要> 
+jQueryDatatables1.10.0使用说明
 <!-- more -->
 <The rest of contents | 余下全文>
 
