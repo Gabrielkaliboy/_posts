@@ -918,3 +918,78 @@ arrays.txt文件
 </table>
 
 #### 4.一个复杂的例子
+
+#### 5.实现表格内容超出隐藏（有坑）
+最终效果：
+
+![](jQueryDatatables1.10.0/2.gif)
+
+##### 5.1css样式
+我们知道，使用css样式就可以实现超出内容隐藏并且用省略号代替，如下
+```css
+    table {
+        table-layout:fixed;
+    }
+    .hiddenMax {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+```
+解释说明：
+- table-layout: fixed 由于table-layout的默认值是auto，即table的宽高将取决于其内容的多寡，如果内容的体积无法估测，那么最终表格的呈现形式也无法保证了，fixed一下就好了。（注意：此样式是关键）。实测，如果不加这个样式，整体会乱掉！！！
+
+- white-space: nowrap 是为了保证无论单元格（TD）中文本内容有多少， 都不会自动换行，此时多余的内容会在水平方向撑破单元格。
+- overflow: hidden 隐藏超出单元格的部分
+- text-overflow: ellipsis 将被隐藏的那部分用省略号代替
+
+
+##### 5.2给谁用？
+在实际应用的时候，我发现把hiddenMax直接给td用不好使，甚至导致整个表格错乱。后来查了查，我直接将返回的内容嵌入到了一个div里面，贴一部分js代码,最后面的那个16就是
+```javascript
+
+"columnDefs": [{
+    "targets": [4], // 目标列位置，下标从0开始
+    "render": function (data, type, full) { // 返回自定义内容                   
+        //return "<font style='color:blue;'>列入计划</font>";
+        if (data == 0) {
+            return emanager ? "<a href='javascript:editcallrepair(" + full.id + ")'><i class=\"Hui-iconfont\">&#xe6df;待审核</i></a>" : "待审核";
+        }
+        else if (data == 1) {
+            return emanager ? "<a href='javascript:editcallrepair(" + full.id + ")'><i class=\"Hui-iconfont\">&#xe6df;审核不通过</i></a>" : "审核不通过";
+        }
+        else if(data ==2) {
+            return emanager ? "<a href='javascript:editcallrepair(" + full.id + ")'><i class=\"Hui-iconfont\">&#xe6df;暂不处理</i></a>" : "暂不处理";
+        }
+        else if (data == 3) {
+            return emanager ? "<a href='javascript:editcallrepair(" + full.id + ")'><i class=\"Hui-iconfont\">&#xe6df;立刻维修</i></a>" : "立刻维修";
+        }
+        else if (data == 4) {
+            return emanager ? "<a href='javascript:editcallrepair(" + full.id + ")'><i class=\"Hui-iconfont\">&#xe6df;列入计划</i></a>" : "列入计划";
+        }
+        else{
+            return emanager ? "<a href='javascript:editcallrepair(" + full.id + ")'><i class=\"Hui-iconfont\">&#xe6df;维修完成</i></a>" : "维修完成";
+        }
+    }
+},{
+    "targets": [16], // 目标列位置，下标从0开始
+    "render": function (data, type, full) { // 返回自定义内容
+        return "<div class=\"hiddenMax\">" + data + "</div>";
+    }
+}],
+```
+
+
+#### 7.关于使用jQuery datatable的时候想实现dragColumn
+
+##### 7.1.关于datatables鼠标拖动改变列宽的有用讨论信息
+https://datatables.net/forums/discussion/26786/basic-column-resizing-plugin
+https://datatables.net//forums/discussion/comment/112220/#Comment_112220
+
+##### 7.2.jQuery datatables无法使用上述插件的根本原因
+jQuery datatables在本地使用假数据进行渲染的时候，以上插件都可以用，但是将数据从后台拿过来，在其 内部实现的时候，将thead和tbody放在了两个不一样的table里面，鼠标拖动的时候，只能实现改变header，而他的body不跟着动，这样就很恶心
+
+##### 7.3.实现jQuery datatables在线上也能够实现拖动
+GitHub：https://github.com/Silvacom/colResize
+
+实测，在datatables1.10.0版本可用！！

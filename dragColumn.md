@@ -564,3 +564,28 @@ GitHub：https://github.com/dobtco/jquery-resizable-columns
 <script type="text/javascript" src="jquery.resizableColumns.min.js"></script>
 <link rel="stylesheet" type="text/css" href="jquery.resizableColumns.css">
 ```
+##### 6 ColReorderWithResize
+可以添加哪一列显示，
+可以鼠标拖动改变列宽，这个功能只在jQuery datatables1.9版本可用,项目用的1.10.0实测只能改变头部的宽度，不能更改table里面内容的宽度
+
+GitHub：https://github.com/jhubble/ColReorderWithResize
+
+他还有个祖宗叫ColReorder，用来实现列的拖拽改变表格排序的
+GitHub：https://github.com/DataTables/ColReorder
+
+#### 7.关于使用jQuery datatable的时候想实现dragColumn
+
+##### 7.1.关于datatables鼠标拖动改变列宽的有用讨论信息
+https://datatables.net/forums/discussion/26786/basic-column-resizing-plugin
+https://datatables.net//forums/discussion/comment/112220/#Comment_112220
+
+##### 7.2.jQuery datatables无法使用上述插件的根本原因
+jQuery datatables在本地使用假数据进行渲染的时候，以上插件都可以用，但是将数据从后台拿过来，在其 内部实现的时候，将thead和tbody放在了两个不一样的table里面，鼠标拖动的时候，只能实现改变header，而他的body不跟着动，这样就很恶心
+
+##### 7.3.colResize实现jQuery datatables在线上也能够实现拖动
+GitHub：https://github.com/Silvacom/colResize
+
+实测，在datatables1.10.0版本可用！！
+
+
+
