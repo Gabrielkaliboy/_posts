@@ -101,7 +101,9 @@ css3特效集合
 </body>
 </html>
 ```
+
 ##### 1.2css样式
+
 ```css
 /*一幅图片和它的描述文本都包裹在一个div.box容器中，为容器设置透视效果。*/
 .box{
@@ -179,4 +181,87 @@ css3特效集合
 @media only screen and (max-width: 990px){
     .box{  margin-bottom:20px; }
 }
+
 ```
+
+
+
+
+
+#### 2.imagehover.css-纯CSS3鼠标滑过图片效果动画库	
+官网：http://imagehover.io/
+
+GitHub：https://github.com/ciar4n/imagehover.css
+
+这个例子说明地址：https://github.com/Gabrielkaliboy/markdown/tree/master/demo/css3SpecialEffects1/2.imagehover
+![](css3SpecialEffects1/2.gif)
+
+
+##### 2.1 介绍
+imagehover.css是一款纯CSS3鼠标滑过图片效果动画库。它可以适应图片的缩放，提供44种不同的鼠标滑过图片效果，压缩后的版本只有19K大小，可以完成各种不同场景的需求。
+
+##### 2.2 使用
+在页面中使用下面的HTML结构，图片的src指向你需要的图片，Hover Content是鼠标滑过时显示的内容，可以自定义。在figure元素中，你可以将class设置为一种你需要的鼠标滑过图片效果的class类。
+
+- 引入css
+```css
+<link type="text/css" rel="stylesheet" href="css/imagehover.min.css" />               
+```
+
+- html结构
+```html
+<figure class="imghvr-fade">
+    <img src="#">
+    <figcaption>
+        // Hover Content
+    </figcaption>
+    <a href="#"></a>
+</figure>    
+```
+
+##### 2.3 imagehover.css可以使用的类
+imghvr-fade
+imghvr-push-up
+imghvr-push-down
+imghvr-push-left
+imghvr-push-right
+imghvr-slide-up
+imghvr-slide-down
+imghvr-slide-left
+imghvr-slide-right
+imghvr-reveal-up
+imghvr-reveal-down
+imghvr-reveal-left
+imghvr-reveal-right
+imghvr-hinge-up
+imghvr-hinge-down
+imghvr-hinge-left
+imghvr-hinge-right
+imghvr-flip-horiz
+imghvr-flip-vert
+imghvr-flip-diag-1
+imghvr-flip-diag-2
+imghvr-shutter-out-horiz
+imghvr-shutter-out-vert
+imghvr-shutter-out-diag-1
+imghvr-shutter-out-diag-2
+imghvr-shutter-in-horiz
+imghvr-shutter-in-vert
+imghvr-shutter-in-out-horiz
+imghvr-shutter-in-out-vert
+imghvr-shutter-in-out-diag-1
+imghvr-shutter-in-out-diag-2
+imghvr-fold-up
+imghvr-fold-down
+imghvr-fold-left
+imghvr-fold-right
+imghvr-zoom-in
+imghvr-zoom-out
+imghvr-zoom-out-up
+imghvr-zoom-out-down
+imghvr-zoom-out-left
+imghvr-zoom-out-right
+imghvr-zoom-out-flip-horiz
+imghvr-zoom-out-flip-vert
+imghvr-bl
+
