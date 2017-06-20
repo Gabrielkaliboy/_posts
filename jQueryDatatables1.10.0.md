@@ -979,6 +979,8 @@ arrays.txt文件
 }],
 ```
 
+#### 6.Datatables在开启滚动条的时候，会使得页面的tbody和thead分布在两个table
+`"sScrollX": "100%", //横向滚动条`
 
 #### 7.关于使用jQuery datatable的时候想实现dragColumn
 
