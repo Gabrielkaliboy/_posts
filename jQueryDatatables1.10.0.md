@@ -978,6 +978,32 @@ arrays.txt文件
     }
 }],
 ```
+##### 5.3上面5.2的方法太复杂了，实现超出隐藏
+只需要在表格初始化的时候加一个样式类就可以了
+```javascript
+"aoColumns": [
+           { "mData": "id", "sClass": "text-c" },
+           { "mData": "id", "sClass": "text-c" },
+           { "mData": "recordnumber", "sClass": "text-c" },
+           { "mData": "recordstate", "sClass": "text-c" },
+           { "mData": "opinionstate", "sClass": "text-c" },
+           { "mData": "wxrecordnumber", "sClass": "text-c" },
+           { "mData": "serialnumber", "sClass": "text-c" },
+           { "mData": "devicename", "sClass": "text-c" },
+           { "mData": "modelname", "sClass": "text-c" },
+           { "mData": "deptname", "sClass": "text-c" },
+           { "mData": "occurredtime", "sClass": "text-c" },
+           { "mData": "recordtime", "sClass": "text-c" },                       
+           { "mData": "faultlevel", "sClass": "text-c" },
+           { "mData": "faulttype", "sClass": "text-c" },
+           { "mData": "confirmtime", "sClass": "text-c" },
+           { "mData": "confirmor", "sClass": "text-c" },
+           { "mData": "faultdesc", "sClass": "text-c" },
+           { "mData": "opinion", "sClass": "text-c" }
+],
+```
+
+
 
 #### 6.Datatables在开启滚动条的时候，会使得页面的tbody和thead分布在两个table
 `"sScrollX": "100%", //横向滚动条`
@@ -988,7 +1014,7 @@ arrays.txt文件
 https://datatables.net/forums/discussion/26786/basic-column-resizing-plugin
 https://datatables.net//forums/discussion/comment/112220/#Comment_112220
 
-##### 7.2.jQuery datatables无法使用上述插件的根本原因
+##### 7.2.jQuery datatables无法使用上述插件的根本原因（参考第六条）
 jQuery datatables在本地使用假数据进行渲染的时候，以上插件都可以用，但是将数据从后台拿过来，在其 内部实现的时候，将thead和tbody放在了两个不一样的table里面，鼠标拖动的时候，只能实现改变header，而他的body不跟着动，这样就很恶心
 
 ##### 7.3.实现jQuery datatables在线上也能够实现拖动
