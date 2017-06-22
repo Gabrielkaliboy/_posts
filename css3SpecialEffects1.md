@@ -272,3 +272,124 @@ imghvr-bl
 ##### 3.1 作者
 作者GitHub：https://github.com/sunweiling/wedding
 ![](css3SpecialEffects1/3.gif)
+
+
+#### 4.使用javascript制作打印机文本效果
+![](css3SpecialEffects1/4.gif)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<style>
+		@keyframes blink {
+		  from, to {
+		    color: transparent;
+		  }
+		  50% {
+		    color: black;
+		  }
+		}
+		#teletype span {
+		  animation: blink 1s step-end infinite;
+		}
+	</style>
+	<link rel="stylesheet" href="1.css">
+	<title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <!-- 显示打字效果的容器,id为teletype的<span>元素用于显示要打印的文字。开始是它带有一个hidden属性，用于阻止文字在开始时就显示出来 -->
+        <div class="printer-container">
+            <span id="teletype" hidden></span>
+        </div>
+        <!-- 一个输入框和一个按钮，让我们可以输入要打印的文字 -->
+        <div class="input-group">
+            <input type="text" class="form-control u-input" placeholder="请输入要打印的文字..." value="让我们来体验一下打字机的效果">
+            <span class="input-group-addon" id="btn-ctrl">开始打印</span>
+        </div>
+    </div>
+</body>
+
+<script>
+	(function(){
+	  var btn = document.getElementById("btn-ctrl");
+	  function typeIt() {
+	  	// 定义一个光标元素，它用于模拟打字时闪烁的光标效果
+	    var cursor = "<span>|</span>";
+	    var teletype = document.getElementById("teletype");
+	    //返回匹配.u-input的第一个元素
+	    var input = document.querySelector(".u-input");
+	    //获取输入的内容
+	    var telecopy = input.value;
+	    var counter = 0;
+	    // 然后将光标元素插入到span#teletype节点中
+	    teletype.innerHTML = cursor;
+	    // 开始打印文字时，将span#teletype元素的hidden属性去掉。
+	    teletype.removeAttribute("hidden");
+	    // 然后通过一个计时器不断的刷新span#teletype元素中的内容，通过一个counter计数器来不断累加要显示的文字，模拟出打字的效果。
+	    var timer = setInterval(function(){
+	      teletype.innerHTML = telecopy.substr(0, counter) + cursor;
+	        counter++;
+	        if(counter === telecopy.length + 1) {
+	            clearInterval(timer);
+	        }
+	    }, 100);
+	  }
+	  btn.onclick = function(){
+	    typeIt();
+	  }
+	})();  
+</script>
+</html>
+```
+
+#### 5.
+地址：http://www.htmleaf.com/Demo/201512012848.html
+需要引入js,css,还有jQuery
+部分代码
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>
+	<script type="text/javascript" src="typeit.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="typeit.min.css">
+	<title>Document</title>
+</head>
+<body>	
+	<p class="example1"></p> 
+	<p class="example2" data-typeit-whattotype="This was defined with a data-typeit-* attribute." data-typeit-typeSpeed="100"></p> 
+	<p class="example3"></p> 
+	<p class="example4"></p> 
+	<script>
+		$('.example1').typeIt({
+		     whatToType: "You've just initialized this bad boy.",//要输出的文字
+		     typeSpeed: 100,//书写速度
+		     lifeLike:true,
+		     showCursor:true,//是否显示光标
+		     breakLines:true,//是否换行，如果为false,将会把一行写完删掉以后再开始写下一行
+		     breakWait:1000,//换行的时候，等待多长时间
+		     delayStart:1000,//延迟几秒钟开始
+
+		});
+		//可以使用这种形式data-typeit-whattotype
+		$('.example2').typeIt();
+		//换行
+		$('.example3').typeIt({
+		     whatToType: ["This is a string!", "And here's another one."],
+		     typeSpeed: 100
+		});
+
+		$('.example4').typeIt({
+		     whatToType: ["This is a great string.", "But here is a better one."],
+		     typeSpeed: 100,
+		     //不换行,删除第一行在接着写
+		     breakLines: false
+		});
+	</script>
+</body>
+</html>
+```
