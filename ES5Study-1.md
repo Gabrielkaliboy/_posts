@@ -287,3 +287,169 @@ x.substring(1,2)
 x.substring(1)
 "bcdefg"
 ```
+- toLocaleLowerCase():字母变为小写
+- toLocaleUpperCase():字母大写
+
+```
+var x="abcdefg"
+x.toLocaleUpperCase()
+//"ABCDEFG"
+```
+#### 7.运算符
+字符串与数字相加，得到的还是字符串
+
+#### 8.javascript条件语句
+- if：只有当指定条件为true时，使用该语句来执行代码
+- if...else:当条件为true的时候执行if后面的代码，false的时候执行else后面的
+- if...else if...else:使用该语句选择多个代码块之一来完成
+
+```javascript
+if (time<10)
+{
+    document.write("<b>早上好</b>");
+}
+else if (time>=10 && time<16)
+{
+    document.write("<b>今天好</b>");
+}
+else
+{
+    document.write("<b>晚上好!</b>");
+}
+```
+
+- switch语句
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<p>点击下面的按钮来显示今天是周几：</p>
+<button onclick="myFunction()">点击这里</button>
+<p id="demo"></p>
+<script>
+function myFunction(){
+	var x;
+	var d=new Date().getDay();
+	switch (d){
+  		case 0:x="今天是星期日";
+    	break;
+ 		case 1:x="今天是星期一";
+        break;
+  		case 2:x="今天是星期二";
+        break;
+        case 3:x="今天是星期三";
+   	 	break;
+  		case 4:x="今天是星期四";
+    	break;
+  		case 5:x="今天是星期五";
+        break;
+  		case 6:x="今天是星期六";
+    	break;
+ 	}
+	document.getElementById("demo").innerHTML=x;
+}
+</script>
+
+</body>
+</html>
+```
+default如果都没有匹配到，就使用default默认设置
+```
+var d=new Date().getDay();
+switch (d)
+{
+    case 6:x="今天是星期六";
+    break;
+    case 0:x="今天是星期日";
+    break;
+    default:
+    x="期待周末";
+}
+document.getElementById("demo").innerHTML=x;
+```
+
+#### 9.for循环
+1. 一般的循环遍历方式
+
+```html
+for (var i=0;i<cars.length;i++)
+{ 
+    document.write(cars[i] + "<br>");
+}
+```
+
+2. 不同类型的循环
+
+- for循环代码块一定次数
+- for/in 循环遍历对象的属性
+- while 当指定的条件为true的时候循环指定的代码块
+- do..while...:当指定的条件为true的时候循环指定的代码块
+
+eg:
+```
+for (var i=0; i<5; i++)
+{
+      x=x + "该数字为 " + i + "<br>";
+}
+```
+
+eg:for...in 遍历
+```
+var person={fname:"John",lname:"Doe",age:25}; 
+ 
+for (x in person)
+{
+    txt=txt + person[x];
+}
+```
+
+eg：while:一定增加条件中变量的值，否则会导致浏览器崩溃
+```
+while (i<5)
+{
+    x=x + "The number is " + i + "<br>";
+    i++;
+}
+```
+do...while:循环至少会执行一次，即使条件为 false 它也会执行一次，因为代码块会在条件被测试前执行：
+```
+do
+{
+    x=x + "The number is " + i + "<br>";
+    i++;
+}
+while (i<5);
+```
+
+3. break和continue
+- break：用于跳出循环
+- continue：用于跳出循环中的一个迭代
+
+eg:
+```html
+for (i=0;i<10;i++)
+{
+    if (i==3) break;
+    x=x + "The number is " + i + "<br>";
+}
+```
+结果:`"fnameThe number is 0<br>The number is 1<br>The number is 2<br>"`
+
+eg：
+```html
+for (i=0;i<=10;i++)
+{
+    if (i==3) continue;
+    x=x + "The number is " + i + "<br>";
+}
+```
+结果：
+`"fnameThe number is 0<br>The number is 1<br>The number is 2<br>The number is 0<br>The number is 1<br>The number is 2<br>The number is 4<br>The number is 5<br>The number is 6<br>The number is 7<br>The number is 8<br>The number is 9<br>The number is 10<br>"`
+
+除了没有3，其余的都有
+
