@@ -217,6 +217,10 @@ win+R ，输入snippingtool,就打开了
 - Windows+M直接切回桌面（不能再切回来）
 - windows+E打开我的电脑
 
+#### win10系统中
+- windows+a：调出右侧的操作中心
+- Windows+q或者Windows+s调出cortana （微软小娜）
+
 - Windows+T,在桌面任务栏来回切换
 ![](unknownComputerTechnology/16.gif)
 

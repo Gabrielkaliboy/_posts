@@ -1,5 +1,5 @@
 ---
-title: 学习vue.js的记录(My97DatePicker)
+title: 学习vue.js的记录
 date: 2017-06-19 09:09:40
 categories: 前端
 tags: [前端开发插件,javascript,vue]

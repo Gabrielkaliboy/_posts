@@ -1,5 +1,5 @@
 ---
-title: javascript菜鸟教程复习
+title: javascript菜鸟教程复习(一)
 date: 2017-06-22 08:40:40
 categories: 前端
 tags: [javascript]
@@ -12,7 +12,7 @@ tags: [javascript]
 -----
 
 网址：http://www.runoob.com/js/js-tutorial.html
-----
+
 #### 1.javascript 输出
 ##### 1.1javascript显示数据
 - window.alert()弹出警告框

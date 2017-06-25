@@ -1,5 +1,5 @@
 ---
-title: javascript菜鸟教程复习
+title: javascript菜鸟教程复习(二)
 date: 2017-06-23 08:40:40
 categories: 前端
 tags: [javascript]
@@ -12,7 +12,7 @@ tags: [javascript]
 -----
 
 网址：http://www.runoob.com/js/js-tutorial.html
-----
+
 #### 1.typeof
 ```html
 typeof "John"                // 返回 string 
