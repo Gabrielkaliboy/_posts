@@ -10,3 +10,14 @@ tags: [bug记录]
 <The rest of contents | 余下全文>
 
 -----
+
+#### 1.IE浏览器文件上传返回的json会提示你下载
+如图
+![](bugCompatibility/1.png)
+
+解决方式：
+根据不同的后台语言进行搜索搜索，关键字
+- IE 文件上传返回json
+- .net上传返回json
+
+修改一下后台返回的数据类型就可以
