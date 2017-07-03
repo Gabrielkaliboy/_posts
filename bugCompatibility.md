@@ -71,7 +71,12 @@ if (reboo > 0)
 ```html
 <meta name="renderer" content="webkit|ie-comp|ie-stand">  
 ```
+亲测上面的meta可用，他是在360安全浏览器渲染的时候直接使用chrome模式，但是如果刻意的调到IE兼容，还会乱。第一个方法，不论用户使用哪种模式（极速或者兼容），都能够正常显示。所以还是第一个方法好一些。为了让浏览器自己打开的时候直接是极速模式，我将第一个meta做了修改
 
+```html
+<meta http-equiv="X-UA-Compatible" content="Chrome=1,IE=edge" />
+```
+将Chrome放在了第一个位置，没效果！！！！！！！！！！
 ##### 2.3知识补充
 
 **关于360浏览器**
