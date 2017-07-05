@@ -550,3 +550,135 @@ html表单自动校验
 </html>
 ```
 min和max只可以给type=date和type=number用，pattern里面放的是正则，title是提示
+
+##### 验证约束的dom方法
+- checkValidity():如果input里面数据是合法的则返回true，否则返回false
+- setCustomValidity():设置input元素的validationMessage属性，用于自定义错误信息提示的方法。使用setCustomValidity()设置了自定义提示以后，validity.customError就会变成true，则checkValidity总是会返回false。如果重新判断，需要取消自定义提示，方式如下：
+
+```html
+setCustomValidity("");
+setCustomValidity(null);
+setCustomValidity(undefined);
+```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<p>输入数字并点击验证按钮:</p>
+
+<input id="id1" type="number" min="100" max="300" required>
+<button onclick="myFunction()">验证</button>
+
+<p>如果输入的数字小于 100 或大于300，会提示错误信息。</p>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var inpObj = document.getElementById("id1");
+    if (inpObj.checkValidity() == false) {
+        document.getElementById("demo").innerHTML = inpObj.validationMessage;
+    } else {
+        document.getElementById("demo").innerHTML = "输入正确";
+    }
+}
+</script>
+
+</body>
+</html>
+```
+
+##### 约束验证dom属性
+- validity：布尔属性值，返回input输入值是否合法
+- validationMessage:浏览器错误提示信息
+- willValidate:指定input是否需要验证
+
+##### validity属性
+input元素的validity属性包含一系列validity数据属性
+- customError：设置为true，如果设置了自定义的validity信息
+- patternMismatch：设置为true，如果元素的值不匹配他的模式属性
+- rangeOverflow：设置为true，如果元素的值大于设置的最大值
+- rangeUnderflow：设置为true，如果元素的值小于设置的最小值
+- stepMismatch：设置为true，如果元素的值不按照规定的step属性设置
+- tooLong:设置为true，如果元素的值超过了maxLength属性设置的长度
+- typeMismatch：设置为true，如果元素的值不是预期相匹配的类型
+- valueMissing：设置为true，如果元素（require）没有值
+- valid：设置为true，如果元素的值是合法的
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<p>输入数字并点击验证按钮:</p>
+
+<input id="id1" type="number" max="100">
+<button onclick="myFunction()">验证</button>
+
+<p>如果输入的数字大于 100 ( input 的 max 属性), 会显示错误信息。</p>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var txt = "";
+    if (document.getElementById("id1").validity.rangeOverflow) {
+        txt = "输入的值太大了";
+    } else {
+        txt = "输入正确";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+</script>
+
+</body>
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<p>输入数字并点击验证按钮:</p>
+<input id="id1" type="number" min="100" required>
+<button onclick="myFunction()">验证</button>
+
+<p>如果输入的数字小于 100 ( input 的 min 属性), 会显示错误信息。</p>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var txt = "";
+	var inpObj = document.getElementById("id1");
+	if(!isNumeric(inpObj.value)) {
+		txt = "你输入的不是数字";
+	} else if (inpObj.validity.rangeUnderflow) {
+        txt = "输入的值太小了";
+    } else {
+        txt = "输入正确";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+
+// 判断输入是否为数字
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+</script>
+
+</body>
+</html>
+```
