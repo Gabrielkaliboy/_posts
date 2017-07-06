@@ -42,6 +42,155 @@ $.proxy()
 ```
 $("ul li + span input.userName")
 ```
+
+- 2880-3042：jQuery中的回调对象，Callbacks通过回调对象，对函数进行统一管理
+新增方法，Callback里面还可以写入参数
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+		function fn1(){
+			alert(1);
+		};
+		function fn2(){
+			alert(2);
+		};
+		var cb=$.Callbacks();
+		cb.add(fn1);
+		cb.add(fn2);
+		cb.fire();//弹出1，2
+	</script>
+	<title></title>
+</head>
+<body>
+	
+</body>
+</html>
+```
+移除方法：
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+		function fn1(){
+			alert(1);
+		};
+		function fn2(){
+			alert(2);
+		};
+		var cb=$.Callbacks();
+		cb.add(fn1);
+		cb.add(fn2);
+		cb.fire();//弹出1，2
+		cb.remove(fn2);//移除了fn2方法
+		cb.fire();//再次调用，这时候只有只弹出1
+	</script>
+	<title></title>
+</head>
+<body>
+	
+</body>
+</html>
+```
+
+- 3043-3183:Deferred:实现的延迟对象,对异步的统一管理
+在js中有很多的操作都是异步的，比如定时器，比如ajax，
+
+**问题**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript">
+		setTimeout(function(){
+			alert(1);
+		},1000)
+		alert(2);
+		//定时器就是异步的，所以在定时器执行的时候，不会影响后续代码的执行，按照上面的写法，
+		//应该先弹出2，在弹出1。但是按照我们的正常思维，应该是按照代码的顺序来执行的，也就
+		//是先弹出1，在弹出2，要实现这个效果，只能将alert(2)放在setTimeout()里面。这样方便维护，
+		//也看着方便。但是这对于我们来说不方便
+		//我们的延迟对象defferred就是来解决这个问题的
+	</script>
+	<title></title>
+</head>
+<body>
+	
+</body>
+</html>
+```
+**使用defferred解决**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+		var dfd =$.Deferred();
+		setTimeout(function(){
+			alert(1);
+			dfd.resolve();
+		},1000);
+		dfd.done(function(){
+			alert(2);
+		});
+		//这样就会先弹1，再弹出2
+	</script>
+	<title></title>
+</head>
+<body>
+	
+</body>
+</html>
+```
+
+- 3184-3295:实现support:实现功能检测，对于不同的浏览器进行检测方法是否可用
+**比如**3200行，根据他的注释可以看出，check或者radio的值，在老版本和新版本的webkit里面不一样，老版本为空，新版本为on 
+```javascript
+	// Support: Safari 5.1, iOS 5.1, Android 4.x, Android 2.3
+	// Check the default checkbox/radio value ("" on old WebKit; "on" elsewhere)
+	support.checkOn = input.value !== "";
+``` 
+
+- 3308-3652:实现data()功能，作用就是数据缓存，就是和数据有关的
+**例如**
+```html
+<script type="text/javascript">
+	$("#div1").data("name","李明");
+	$("#div1").data("name");//这样就可以获取到数据“李明”
+</script>
+```
+
+- 3653-3797:实现queue()功能：队列管理，入队；dequeue:出队
+**常用到的地方就是时间管理** 
+```html
+<script type="text/javascript">
+	$("#div1").animate({left:100});
+	$("#div1").animate({top:100});
+	$("#div1").animate({width:300});
+	//如果保证他的动画是按照顺序一个个执行的，这里就用到了queue队列管理。他的作用就是把
+	//上面三个存到一个队列里面，当一个走完，让他出队dequeue
+</script>
+```
+- 3803-4299:完成像attr,prop,val,addClass方法的封装等：对元素属性的操作
+
+- 4300-5128：on,trigger():这里放的都是事件触发的操作，事件的管理
+
+
+- 5140-6057：实现的dom操作的方法，比如dom的添加，获取，删除，包装等
+- 6058-6620：css()的方法，专门针对样式的操作
+- 6621-7854：提交的数据和ajax的操作，实现ajax功能的：ajax(),load(),getJson()等
+- 7855-8584：animate()的操作，还有show,fadeIn,fadeOut等
+- 8585-8792：offerset():位置和尺寸的一些方法。
+- 8804-8821：jQuery支持模块化的一个模式 
 - 8826 将接口对外暴露
 ```javascript
 window.jQuery = window.$ = jQuery;
