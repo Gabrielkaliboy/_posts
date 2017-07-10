@@ -2,7 +2,7 @@
 title: 前端日常记录（一）
 date: 2017-06-25 09:10:40
 categories: 前端
-tags: [less]
+tags: [bug记录]
 ---
 <Excerpt in index | 首页摘要> 
 less学习
@@ -37,4 +37,22 @@ less学习
   border-style: solid dashed dashed dashed;
 }
 
+```
+
+#### 将某个元素存入数组
+注意push函数的返回值是存入目标数组的长度，如下
+```javascript
+var xx=[],
+	yy;
+yy=xx.push(1,4,5);
+console.log(yy);
+//3
+//返回数字一，我们的本意是获取push以后的新数组，这样是不行的
+```
+得这么写
+```javascript
+var xx=[];
+xx.push(1);
+console.log(xx);
+//[1]
 ```
