@@ -279,3 +279,102 @@ arr之所以后面可以跟一个方法，就是因为arr是一个数组的实�
 ```
 return new jQuery.fn.init( selector, context, rootjQuery );
 ```
+
+### 21-91 
+#### 14
+为什么出入参数window？
+- 根据作用域链的原理，他的查找速度会变快
+
+```html
+(functioin(window){
+	window
+})(window)
+```
+- 压缩版本中，传入的是e,也就是方便压缩，减小代码量
+
+```html
+(functioin(e){
+	e
+})(e)
+```
+参数undefined
+- 他是js的一个属性，可以在外部进行修改
+- 兼容性，在Firefox，Chrome，IE9/10/11里面不管你定不定义，弹出来的都是undefined
+```html
+		var undefined=10;
+		alert(undefined);
+		//在Chrome、Firefox，IE9/10/11都是弹出的结果都是undefined
+		//IE8/7弹出10
+```
+- 为了防止其他人在外面对undefined进行修改，所以他进行了一个传参的操作，防止被修改
+
+
+#### 20 use strict使用严格模式
+```
+	"use strict";
+	//不加var 关键字会报错
+	a=10;
+```
+注释掉以后完全可以没问题
+
+在例如
+```html
+	//再例如八进制数
+	var a=010;
+	//不允许使用八进制
+```
+
+#### 23 rootjQuery
+- 他是我们的根节点，可以在866行找到他的赋值语句，这个变量在压缩版的时候可以直接变成一个字符。
+- 方便维护，一目了然，就想下面这个一样
+
+```
+var isSpeed=10;
+var a=a+isSpeed;
+
+对比
+var a=a+10;
+```
+
+#### 26 readyList
+与dom加载有关的变量，在349-2856之间。到时候再说
+
+
+#### 30 core_strundefined
+存的是一个字符串形式的undefined
+
+- 判断window下面的变量（属性）是否是不存在的
+```
+ window.a==undefined;
+//返回true
+```
+
+- 或者
+```
+typeof window.a=="undefined";
+//返回true
+```
+
+- 在很少的一些情况下，光是这么去判断可能判断不出来，这个东西在IE6/7/8/9有问题，加入我们判断一个xml一个节点或者属性的时候，这种时候，只用，window.a==undefined这种形式可能判断不出来他会认为条件不充分，所以为了做到所有情况的兼容，最好使用下面这种写法，出现这种情况的时候非常少
+
+
+#### 33-35 对于一些window下的变量进行存储
+
+#### 37-41 防止变量冲突
+等到讲到防止冲突的时候在详细的讲
+$可能在其他的库中也用到，所以，
+```html
+var $=10;
+//这时候就会有冲突，jQuery会自动解决
+```
+上面代码中的$会赋值给41行的_$,如果没有冲突的话，两个变量存的值是undefined
+
+这个在扩展一些工具方法里面用到了（349-817）
+
+#### 44 定义了一个空的对象字面量
+
+$.type首先用到的，用来判断每一个变量或者每一个元素的类型，	class2type = {},
+里面会存成一个
+```
+class2type={"[Object/String]":"string","[Object Array]":"array"}
+```
