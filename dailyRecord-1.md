@@ -5,7 +5,7 @@ categories: 前端
 tags: [bug记录]
 ---
 <Excerpt in index | 首页摘要> 
-less学习
+前端日常记录
 <!-- more -->
 <The rest of contents | 余下全文>
 
@@ -56,3 +56,4 @@ xx.push(1);
 console.log(xx);
 //[1]
 ```
+

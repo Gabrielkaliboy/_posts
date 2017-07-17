@@ -41,3 +41,71 @@ vsCode
 - 语法高亮，包括 html/jade/pug css/sass/scss/less/stylus js/ts
 - emmet 支持
 - 代码自动补全（目前还是初级阶段），包括 HTML/CSS/SCSS/LESS/JavaScript/TypeScript
+
+
+#### Debugger for Chrome
+- 下载地址：https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome
+- 说明：可以在vs里面直接用Chrome进行调试
+- 环境搭建
+	- 安装完了插件以后，在调试界面添加Chrome环境，然后在打开的launch.json里面写入配置，
+	- 默认launch.json里面是这样的
+	```
+	{
+	    "version": "0.2.0",
+	    "configurations": [
+	        
+	        {
+	            "type": "chrome",
+	            "request": "launch",
+	            "name": "Launch Chrome against localhost",
+	            "url": "http://localhost:8080",
+	            "webRoot": "${workspaceRoot}"
+	        },
+	        {
+	            "type": "chrome",
+	            "request": "attach",
+	            "name": "Attach to Chrome",
+	            "port": 9222,
+	            "webRoot": "${workspaceRoot}"
+	        }
+	    ]
+	}
+	```
+	- 更改以后是这样的
+
+	```
+	{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch index.html (disable sourcemaps)",//就是这个
+            "type": "chrome",
+            "request": "launch",
+            "sourceMaps": false,
+            "file": "${workspaceRoot}/index.html"//你的文件名字叫什么，这里就写什么，或者不写，直接到的是文件夹目录
+        },       
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "webRoot": "${workspaceRoot}"
+        }
+	    ]
+	}
+	```
+	- 将配置文件改好了以后，就可以使用了，记得调试的时候选择我们刚才改的那个
+
+![](vsCode/4.gif)
+
+### 使用说明
+
+#### 移除当前文件目录
+文件--->关闭文件夹
