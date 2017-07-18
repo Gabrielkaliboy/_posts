@@ -120,3 +120,45 @@ javascript使用代码段
 </script>
 </html>
 ```
+
+#### 数组去重（原创）
+```javascript
+var dataArray=[1,2,3,1,2,3];
+function deleteRepeat(dataArray){
+    var newArray=[];
+    for(var i=0;i<dataArray.length;i++){
+        if(newArray.indexOf(dataArray[i]) == -1){
+            newArray.push(dataArray[i]);
+        }
+    }
+    return newArray;
+};
+console.log(deleteRepeat(dataArray));
+```
+#### 数组去重（借鉴）
+```javascript
+var dataArray=[1,2,3,1,2,3,"dd","cc","dd","cc"];
+Array.prototype.deleteRepeat=function(){
+    //这里的this指向的就是当前的数组，比如dataArray
+    //result就是去重以后的数组
+    //注意这里的写法，直接将result写为了数组
+    var result=[this[0]];
+    for(var i=0;i<this.length;i++){
+        var repeat=false;
+        for(var m=0;m<result.length;m++){
+            if(this[i]==result[m]){
+                //能进入这个循环，说明当前的this[i]在resutl里面有，也就是重复
+                //将repeat设为true,不让其进入下面的if循环
+                repeat=true;
+                break;
+            }
+        }
+        if(!repeat){
+            //进入这个的，也就是没有重复，没有重复就把当前的this[i]扔进result
+            result.push(this[i]);
+        }
+    }
+    return result;
+}
+console.log(dataArray.deleteRepeat());
+```

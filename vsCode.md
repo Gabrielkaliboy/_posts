@@ -109,3 +109,39 @@ vsCode
 
 #### 移除当前文件目录
 文件--->关闭文件夹
+
+### vs code+xampp+php搭建php开发调试环境
+#### 1.安装php-debug
+打开vs code直接快捷键Ctrl+p,输入`ext install php-debug` 安装调试插件 
+
+#### 2.下载xdebug
+去 https://xdebug.org/download.php 下载php对应版本的插件，php版本可以在xampp中的readme看到，下载这个PHP 5.6 VC11 TS (32 bit) 把dll文件拷贝到php(xampp文件目录下面的php文件夹)目录
+![](vsCode/1.png)
+
+#### 3.配置php.ini
+在xampp安装目录的php文件夹下面找到php.ini,加入如下代码,其中zend_extension的路径改为我们正确的位置，配置完成后重启apache服务器
+```
+zend_extension=D:\xampp\php\php_xdebug-2.5.5-7.0-vc14.dll
+[XDebug]
+xdebug.remote_enable = 1
+xdebug.remote_autostart = 1
+``` 
+#### 4.第一次安装vs会提示这个，需要配置下php.exe的路径，在用户设置里添加以下项
+![](vsCode/2.png)
+
+打开文件--->首选项---->设置，填入真是的php.exe路径
+
+![](vsCode/3.png)
+
+#### 5.在vscode中的php文件打一断点，点Listen for XDebug 项目的运行，配置不用更改，默认就可以
+![](vsCode/4.png) 
+
+#### 6.php文件要做xampp对应的目录下，直接在浏览器运行，注意是服务器地址，然后打断点就可以调试了
+直接在浏览器中打开要调试的php（不是文件路径而是服务器的地址(http://127.0.0.1/test.php)）,vscode就会命中到打断点的地方
+
+
+#### 注意
+php最大执行时间好像是30秒，超过30秒会自动终止，因此调试的时候要修改一下时间，在php.ini 文件中修改最大运行时间为5分钟
+```
+max_execution_time=3000
+```
