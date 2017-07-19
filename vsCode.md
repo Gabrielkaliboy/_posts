@@ -160,10 +160,15 @@ max_execution_time=3000
 
 vs code 编写markdown文件
 ---
-#### vs code 与markdown
+#### 1. vs code 与markdown
 vs code最新版本已经默认支持markdown
 
 #### Auto-Open Markdown Preview
 说明：实时预览插件
 网址：https://marketplace.visualstudio.com/items?itemName=hnw.vscode-auto-open-markdown-preview
 安装代码：ext install vscode-auto-open-markdown-preview
+
+vs code里面使用git
+---
+#### 1.参考
+http://www.cnblogs.com/xuanhun/p/6019038.html?utm_source=tuicool&utm_medium=referral
