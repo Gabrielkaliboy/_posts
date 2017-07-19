@@ -10,8 +10,8 @@ tags: [bug记录]
 <The rest of contents | 余下全文>
 
 -----
-
-#### 1.IE浏览器文件上传返回的json会提示你下载
+源码：https://github.com/Gabrielkaliboy/demo/tree/master/_posts/bugCompatibility-1
+### 1.IE浏览器文件上传返回的json会提示你下载
 如图
 ![](bugCompatibility/1.png)
 
@@ -36,13 +36,13 @@ if (reboo > 0)
 ```
 
 
-#### 2. 360安全浏览器在默认安装打开情况下使用IE7的文档模式导致页面布局乱套问题
+### 2. 360安全浏览器在默认安装打开情况下使用IE7的文档模式导致页面布局乱套问题
 百度搜索：360安全浏览器默认IE7
 
-##### 2.1 问题描述
+#### 2.1 问题描述
 页面在Chrome以及IE9/10/11都没有问题，结果在360安全浏览器下打开以后页面布局乱套了，打开控制台发现，360安全浏览器的默认文档模式是IE7。就是这个根本原因导致我好好的页面错乱！
 
-##### 2.2解决
+#### 2.2解决
 查了很多资料，最后只有这个起效了。将下面这句话放在header的第一个位置，切记是第一位置,简单粗暴
 
 ```html
@@ -77,7 +77,7 @@ if (reboo > 0)
 <meta http-equiv="X-UA-Compatible" content="Chrome=1,IE=edge" />
 ```
 将Chrome放在了第一个位置，没效果！！！！！！！！！！
-##### 2.3知识补充
+#### 2.3知识补充
 
 **关于360浏览器**
 360有极速版和安全浏览器，二者都是双核模式（IE的trident和谷歌的webkit）。极速模式默认优先使用Chrome打开页面，只有在银行系统下才会自动切换到IE模式；安全浏览器下载安装以后默认打开是IE兼容模式，也就是我们上面写的IE7兼容模式，很恶心，他还可以在地址栏那里手动切换回极速模式（Chrome）
@@ -86,3 +86,16 @@ if (reboo > 0)
 360浏览器内核控制Meta标签说明文档：http://se.360.cn/v6/help/meta.html
 360安全浏览器 7.1的遇到的模式切换问题：http://www.binjs.com/archives/1015
 Stack Overflow：http://stackoverflow.com/questions/6771258/whats-the-difference-if-meta-http-equiv-x-ua-compatible-content-ie-edge-e
+
+
+### toFixed在保留小数的同时将类型也变了
+本来数据是number类型，经过toFixed以后，变为了string类型，这个有点坑
+```javascript
+//toFixed
+//将一个数值转成字符串，并进行四舍五入，保留指定位数的小数
+
+var num = 11.1234;
+var newString = num.toFixed(2);
+document.write("type: " + typeof (newString));
+document.write(newString);
+```
