@@ -43,7 +43,7 @@ vsCode
 - 代码自动补全（目前还是初级阶段），包括 HTML/CSS/SCSS/LESS/JavaScript/TypeScript
 
 
-#### Debugger for Chrome
+#### 6.Debugger for Chrome
 - 下载地址：https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome
 - 说明：可以在vs里面直接用Chrome进行调试
 - 环境搭建
@@ -105,12 +105,24 @@ vsCode
 
 ![](vsCode/4.gif)
 
-### 使用说明
+#### OneDark Pro
+说明：用来更改主题的
+地址：https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme
+官网：https://binaryify.github.io/OneDark-Pro/#/
+使用说明：Ctrl+k,然后在Ctrl+t
+![](vsCode/5.gif)
 
+
+
+
+使用说明
+---
 #### 移除当前文件目录
 文件--->关闭文件夹
 
-### vs code+xampp+php搭建php开发调试环境
+
+vs code+xampp+php搭建php开发调试环境
+---
 #### 1.安装php-debug
 打开vs code直接快捷键Ctrl+p,输入`ext install php-debug` 安装调试插件 
 
@@ -145,3 +157,13 @@ php最大执行时间好像是30秒，超过30秒会自动终止，因此调试�
 ```
 max_execution_time=3000
 ```
+
+vs code 编写markdown文件
+---
+#### vs code 与markdown
+vs code最新版本已经默认支持markdown
+
+#### Auto-Open Markdown Preview
+说明：实时预览插件
+网址：https://marketplace.visualstudio.com/items?itemName=hnw.vscode-auto-open-markdown-preview
+安装代码：ext install vscode-auto-open-markdown-preview
