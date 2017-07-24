@@ -88,7 +88,7 @@ if (reboo > 0)
 Stack Overflow：http://stackoverflow.com/questions/6771258/whats-the-difference-if-meta-http-equiv-x-ua-compatible-content-ie-edge-e
 
 
-### toFixed在保留小数的同时将类型也变了
+### 3.toFixed在保留小数的同时将类型也变了
 本来数据是number类型，经过toFixed以后，变为了string类型，这个有点坑
 ```javascript
 //toFixed
@@ -99,3 +99,13 @@ var newString = num.toFixed(2);
 document.write("type: " + typeof (newString));
 document.write(newString);
 ```
+
+### 4.模拟点击a标签触发页面跳转
+有的时候我们想给a标签添加一个点击事件，让他根据其属性href进行跳转
+```javascript
+<a id="alink" href="1.html" style="visibility: hidden;">下一步</a> 
+$("#alink").click(); // 触发了a标签的点击事件，但是没有触发页面跳转 
+document.getElementById("alink").click(); //既触发了a标签的点击事件，又触发了页面跳转 
+```
+如果我们不想使用第二种方法.
+把 “下一步” 改为 “<span id="spanId">下一步</span>” 即给A标签中的文字添加一个能被jQuery捕获的元素，然后$("#spanId").click()；，才可以触发页面跳转。
