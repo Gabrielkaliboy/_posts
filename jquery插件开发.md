@@ -10,7 +10,8 @@ jquery插件
 <The rest of contents | 余下全文>
 
 -----
-
+[jQuery官方说明](https://learn.jquery.com/plugins/)
+[原文作者](http://www.cnblogs.com/Wayou/p/jquery_plugin_tutorial.html)
 ### 1.jQuery插件开发模式
 根据《jQuery高级编程》的描述，jQuery插件开发方式主要有三种：
 - 通过$.extend()来扩展jQuery,只能通过$调用，不能利用jQuery强大的选择器
@@ -262,32 +263,448 @@ $.fn.myPlugin = function(options) {
 }
 ```
 到此，插件可以接收和处理参数后，就可以编写出更健壮而灵活的插件了。若要编写一个复杂的插件，代码量会很大，如何组织代码就成了一个需要面临的问题，没有一个好的方式来组织这些代码，整体感觉会杂乱无章，同时也不好维护，所以将插件的所有方法属性包装到一个对象上，用面向对象的思维来进行开发，无疑会使工作轻松很多。
+**我**：$.extend()，里面可以添加很多的对象，而所有的对象都会被整合到第一个参数里面，就像上面一样，我们不想defaults和options更改，那就在extend里面给第一个参数为一个空对象，这样defaults和options都会被整合到这个空对象里面。
+
+### 6.面向对象的插件开发
+为什么要有面向对象的思维，因为如果不这样，你可能需要一个方法的时候就去定义一个function，当需要另外一个方法的时候，再去随便定义一个function，同样，需要一个变量的时候，毫无规则地定义一些散落在代码各处的变量。
+
+还是老问题，不方便维护，也不够清晰。当然，这些问题在代码规模较小时是体现不出来的。
+
+如果将需要的重要变量定义到对象的属性上，函数变成对象的方法，当我们需要的时候通过对象来获取，一来方便管理，二来不会影响外部命名空间，因为所有这些变量名还有方法名都是在对象内部。
+
+接着上面的例子，我们可以把这个插件抽象成一个美化页面的对象，因为他的功能是设置颜色啊字体啊什么的，当然我们还可以加入其他功能比如设置下划线啊什么的。当然对于这个例子抽象成对象有点小题大做，这里仅作演示用。以后我可能会介绍我编写的一个jQuery插件[SlipHover](https://github.com/Wayou/SlipHover),其中代码就比较多，这样的模式就用得上了。
+
+所以我们新建一个对象命名为Beautifier，然后我们在插件里使用这个对象来编码。
+```javascript
+//定义Beautifier的构造函数
+var Beautifier = function(ele, opt) {
+    this.$element = ele,
+    this.defaults = {
+        'color': 'red',
+        'fontSize': '12px',
+        'textDecoration':'none'
+    },
+    this.options = $.extend({}, this.defaults, opt)
+}
+//定义Beautifier的方法
+Beautifier.prototype = {
+    beautify: function() {
+        return this.$element.css({
+            'color': this.options.color,
+            'fontSize': this.options.fontSize,
+            'textDecoration': this.options.textDecoration
+        });
+    }
+}
+//在插件中使用Beautifier对象
+$.fn.myPlugin = function(options) {
+    //创建Beautifier的实体
+    var beautifier = new Beautifier(this, options);
+    //调用其方法
+    return beautifier.beautify();
+}
+```
+通过上面这样一改造，我们的代码变得更面向对象了，也更好维护和理解，以后要加新功能新方法，只需向对象添加新变量及方法即可，然后在插件里实例化后即可调用新添加的东西。
+
+插件的调用还是一样的，我们对代码的改动并不影响插件其他地方，只是将代码的组织结构改动了而以。
+```javascript
+$(function() {
+    $('a').myPlugin({
+        'color': '#2C9929',
+        'fontSize': '20px'
+    });
+})
+```
+指定文字带下划线（我们在Beautifier对象中新加的功能，默认不带下划线，如上面的例子）的调用：
+
+```javascript
+$(function() {
+    $('a').myPlugin({
+        'color': '#2C9929',
+        'fontSize': '20px',
+        'textDecoration': 'underline'
+    });
+})
+```
+一个完整的demo
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="http://www.webo.com/liuwayong">我的微博</a>
+        </li>
+        <li>
+            <a href="http://http://www.cnblogs.com/Wayou/">我的博客</a>
+        </li>
+        <li>
+            <a href="http://wayouliu.duapp.com/">我的小站</a>
+        </li>
+    </ul>
+    <p>这是p标签不是a标签，我不会受影响</p>
+</body>
+<script>
+    //定义beautifier的构造函数
+    var Beautifier=function(ele,opt){
+        //第一个参数就是jQuery选择器中的元素，将它赋值给$element
+        this.$element = ele,
+        //这是里面的默认配置
+        this.defaults={
+            'color':'red',
+            'fontSize':'12px',
+            'textDecoration':'none'
+        },
+        //将用户设置与默认设置合并设置给options
+        this.options = $.extend({},this.defaults,opt)
+    };
+
+    //给构造函数Beautifier上面挂方法，注意这里的this都是指向Beautifier
+    Beautifier.prototype = {
+        beautify:function(){
+            //这里调用jQuery对象的方法
+            return this.$element.css({
+                "color":this.options.color,
+                "fontSize":this.options.fontSize,
+                "textDecoration":this.options.textDecoration
+            })
+        }
+    }
+    //在插件中使用beautifier对象
+    $.fn.myPlugin = function(options){
+        //options还是传进来的那个用户设置，用对象包裹的
+        //创建beautifier实体，这里的this指向的是jQuery选择器中的元素
+        var beautifier = new Beautifier(this,options);
+        //调用其他方法
+        return beautifier.beautify();
+    }
+
+    //使用
+    $(function(){
+        $("a").myPlugin({
+            'color':"#f0f",
+            "fontSize":"25px"
+        })
+    })
+</script>
+</html>
+```
+到这里，你可以更好地编写复杂的插件同时很好地组织代码了。当我们回头去看上面的代码时，其实也还是有改进空间的。也就是下面介绍的关于命名空间及变量各什么的，一些杂项。
+
+### 7.关于命名空间
+不仅仅是jQuery插件的开发，我们在写任何JS代码时都应该注意的一点是不要污染全局命名空间。因为随着你代码的增多，如果有意无意在全局范围内定义一些变量的话，最后很难维护，也容易跟别人写的代码有冲突。
+
+比如你在代码中向全局window对象添加了一个变量status用于存放状态，同时页面中引用了另一个别人写的库，也向全局添加了这样一个同名变量，最后的结果肯定不是你想要的。所以不到万不得已，一般我们不会将变量定义成全局的。
+
+一个好的做法是始终用[自调用匿名函数](https://sarfraznawaz.wordpress.com/2012/01/26/javascript-self-invoking-functions/)包裹你的代码，这样就可以完全放心，安全地将它用于任何地方了，绝对没有冲突。
+
+#### 7.1用自调用匿名函数包裹你的代码
+我们知道JavaScript中无法用花括号方便地创建作用域，但函数却可以形成一个作用域，域内的代码是无法被外界访问的。如果我们将自己的代码放入一个函数中，那么就不会污染全局命名空间，同时不会和别的代码冲突。
+
+如上面我们定义了一个Beautifier全局变量，它会被附到全局的window对象上，为了防止这种事情发生，你或许会说，把所有代码放到jQuery的插件定义代码里面去啊，也就是放到$.fn.myPlugin里面。这样做倒也是种选择。但会让我们实际跟插件定义有关的代码变得臃肿，而在$.fn.myPlugin里面我们其实应该更专注于插件的调用，以及如何与jQuery互动。
+
+所以保持原来的代码不变，我们将所有代码用自调用匿名函数包裹。
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="http://www.webo.com/liuwayong">我的微博</a>
+        </li>
+        <li>
+            <a href="http://http://www.cnblogs.com/Wayou/">我的博客</a>
+        </li>
+        <li>
+            <a href="http://wayouliu.duapp.com/">我的小站</a>
+        </li>
+    </ul>
+    <p>这是p标签不是a标签，我不会受影响</p>
+</body>
+<script>
+    (function(){
+            //定义beautifier的构造函数
+        var Beautifier=function(ele,opt){
+            //第一个参数就是jQuery选择器中的元素，将它赋值给$element
+            this.$element = ele,
+            //这是里面的默认配置
+            this.defaults={
+                'color':'red',
+                'fontSize':'12px',
+                'textDecoration':'none'
+            },
+            //将用户设置与默认设置合并设置给options
+            this.options = $.extend({},this.defaults,opt)
+        };
+
+        //给构造函数Beautifier上面挂方法，注意这里的this都是指向Beautifier
+        Beautifier.prototype = {
+            beautify:function(){
+                //这里调用jQuery对象的方法
+                return this.$element.css({
+                    "color":this.options.color,
+                    "fontSize":this.options.fontSize,
+                    "textDecoration":this.options.textDecoration
+                })
+            }
+        }
+        //在插件中使用beautifier对象
+        $.fn.myPlugin = function(options){
+            //options还是传进来的那个用户设置，用对象包裹的
+            //创建beautifier实体，这里的this指向的是jQuery选择器中的元素
+            var beautifier = new Beautifier(this,options);
+            //调用其他方法
+            return beautifier.beautify();
+        }
+    })()
+    //使用
+    $(function(){
+        $("a").myPlugin({
+            'color':"#f0f",
+            "fontSize":"25px"
+        })
+    })
+</script>
+</html>
+```
+这样做的好处，也就是上面所阐述的那样。另外还有一个好处就是，自调用匿名函数里面的代码会在第一时间执行，页面准备好过后，上面的代码就将插件准备好了，以方便在后面的代码中使用插件。
+
+目前为止似乎接近完美了。如果再考虑到其他一些因素，比如我们将这段代码放到页面后，前面别人写的代码没有用分号结尾，或者前面的代码将window, undefined等这些系统变量或者关键字修改掉了，正好我们又在自己的代码里面进行了使用，那结果也是不可预测的，这不是 我们想要的。我知道其实你还没太明白，下面详细介绍。
+
+#### 7.2将系统变量以变量形式传递到插件内部
+来看下面的代码，你猜他会出现什么结果？
+```javascript
+var foo=function(){
+    //别人的代码
+}//注意这里没有用分号结尾
+
+//开始我们的代码。。。
+(function(){
+    //我们的代码。。
+    alert('Hello!');
+})();
+```
+本来别人的代码也正常工作，只是最后定义的那个函数没有用分号结尾而以，然后当页面中引入我们的插件时，报错了，我们的代码无法正常执行。
+
+本来别人的代码也正常工作，只是最后定义的那个函数没有用分号结尾而以，然后当页面中引入我们的插件时，报错了，我们的代码无法正常执行。
+```javascript
+var foo=function(){
+    //别人的代码
+}//注意这里没有用分号结尾
+
+//开始我们的代码。。。
+;(function(){
+    //我们的代码。。
+    alert('Hello!');
+})();
+```
+
+同时，将系统变量以参数形式传递到插件内部也是个不错的实践。
+
+当我们这样做之后，window等系统变量在插件内部就有了一个局部的引用，可以提高访问速度，会有些许性能的提升
+
+最后我们得到一个非常安全结构良好的代码：
+```javascript
+;(function($,window,document,undefined){
+    //我们的代码。。
+    //blah blah blah...
+})(jQuery,window,document);
+```
+而至于这个undefined，稍微有意思一点，为了得到没有被修改的undefined，我们并没有传递这个参数，但却在接收时接收了它，因为实际并没有传，所以‘undefined’那个位置接收到的就是真实的'undefined'了。是不是有点hack的味道，值得细细体会的技术，当然不是我发明的，都是从前人的经验中学习。
+
+所以最后我们的插件成了这样：
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="http://www.webo.com/liuwayong">我的微博</a>
+        </li>
+        <li>
+            <a href="http://http://www.cnblogs.com/Wayou/">我的博客</a>
+        </li>
+        <li>
+            <a href="http://wayouliu.duapp.com/">我的小站</a>
+        </li>
+    </ul>
+    <p>这是p标签不是a标签，我不会受影响</p>
+</body>
+<script>
+    ;(function($,window,document,undefined){
+            //定义beautifier的构造函数
+        var Beautifier=function(ele,opt){
+            //第一个参数就是jQuery选择器中的元素，将它赋值给$element
+            this.$element = ele,
+            //这是里面的默认配置
+            this.defaults={
+                'color':'red',
+                'fontSize':'12px',
+                'textDecoration':'none'
+            },
+            //将用户设置与默认设置合并设置给options
+            this.options = $.extend({},this.defaults,opt)
+        };
+
+        //给构造函数Beautifier上面挂方法，注意这里的this都是指向Beautifier
+        Beautifier.prototype = {
+            beautify:function(){
+                //这里调用jQuery对象的方法
+                return this.$element.css({
+                    "color":this.options.color,
+                    "fontSize":this.options.fontSize,
+                    "textDecoration":this.options.textDecoration
+                })
+            }
+        }
+        //在插件中使用beautifier对象
+        $.fn.myPlugin = function(options){
+            //options还是传进来的那个用户设置，用对象包裹的
+            //创建beautifier实体，这里的this指向的是jQuery选择器中的元素
+            var beautifier = new Beautifier(this,options);
+            //调用其他方法
+            return beautifier.beautify();
+        }
+    })(jQuery,window,document);
+    //使用
+    $(function(){
+        $("a").myPlugin({
+            'color':"#f0f",
+            "fontSize":"25px"
+        })
+    })
+</script>
+</html>
+```
+一个安全，结构良好，组织有序的插件编写完成。
+### 8.关于变量定义及命名(不必看)
+现在谈谈关于变量及方法等的命名，没有硬性规定，但为了规范，遵循一些约定还是很有必要的。
+
+**变量定义**：好的做法是把将要使用的变量名用一个var关键字一并定义在代码开头，变量名间用逗号隔开。原因有二：
+
+-  一是便于理解，知道下面的代码会用到哪些变量，同时代码显得整洁且有规律，也方便管理，变量定义与逻辑代码分开；
+
+- 二是因为JavaScript中所有变量及函数名会自动提升，也称之为[JavaScript的Hoist特性](http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html)，即使你将变量的定义穿插在逻辑代码中，在代码解析运行期间，这些变量的声明还是被提升到了当前作用域最顶端的，所以我们将变量定义在一个作用域的开头是更符合逻辑的一种做法。当然，再次说明这只是一种约定，不是必需的。
+
+#### 8.1变量及函数命名
+一般使用驼峰命名法（CamelCase），即首个单词的首字母小写，后面单词首字母大写，比如resultArray，requestAnimationFrame。对于常量，所有字母采用大写，多个单词用下划线隔开，比如WIDTH=100，BRUSH_COLOR='#00ff00'。当变量是jQuery类型时，建议以$开头，开始会不习惯，但经常用了之后会感觉很方便，因为可以很方便地将它与普通变量区别开来，一看到以$开头我们就知道它是jQuery类型可以直接在其身上调用jQuery相关的方法，比如var $element=$('a'); 之后就可以在后面的代码中很方便地使用它，并且与其他变量容易区分开来。
+
+#### 8.2引号的使用
+既然都扯了这些与插件主题无关的了，这里再多说一句，一般HTML代码里面使用双引号，而在JavaScript中多用单引号，比如下面代码所示：
+```javascript
+var name = 'Wayou';
+document.getElementById(‘example’).innerHTML = '< a href="http: //wayouliu.duapp.com/">'+name+'</a>'; //href=".." HTML中保持双引号，JavaScript中保持单引号
+```
+一方面，HTML代码中本来就使用的是双引号，另一方面，在JavaScript中引号中还需要引号的时候，要求我们单双引号间隔着写才是合法的语句，除非你使用转意符那也是可以的。再者，坚持这样的统一可以保持代码风格的一致，不会出现这里字符串用双引号包着，另外的地方就在用单引号。
 
 
+### 9.代码混淆与压缩
+进行完上面的步骤，已经小有所成了。或许你很早就注意到了，你下载的插件里面，一般都会提供一个压缩的版本一般在文件名里带个'min'字样。也就是minified的意思，压缩浓缩后的版本。并且平时我们使用的jQuery也是官网提供的压缩版本，jquery.min.js。
 
+这里的压缩不是指代码进行功能上的压缩，而是通过将代码里面的变量名，方法函数名等等用更短的名称来替换，并且删除注释（如果有的话）删除代码间的空白及换行所得到的浓缩版本。同时由于代码里面的各种名称都已经被替代，别人无法阅读和分清其逻辑，也起到了混淆代码的作用。
 
+#### 9.1压缩的好处
+- 源码经过混淆压缩后，体积大大减小，使代码变得轻量级，同时加快了下载速度，两面加载变快。比如正常jQuery v1.11.0的源码是276kb，而压缩后的版本仅94.1kb！体积减小一半还多。这个体积的减小对于文件下载速度的提升不可小觑。
+- 经过压缩混淆后，代码还能阅读嘛？当然不能，所以顺带还起到了代码保护的作用。当然只是针对你编写了一些比较酷的代码又不想别人抄袭的情况。对于jQuery社区，这里本身就是开源的世界，同时JavaScript这东西其实也没什么实质性方法可以防止别人查看阅读你的代码，毕竟有混淆就有反混淆工具，这里代码压缩更多的还是上面提到的压缩文件的作用，同时一定程度上防止别人抄袭。
 
+#### 9.2 工具
+所使用的工具推崇的是Google开发的[Closure Compiler](https://developers.google.com/closure/)。该工具需要Java环境的支持，所以使用前你可能需要先在机子上装JRE, 然后再获取Closure进行使用。
 
+同时也有很朋在线的代码混淆压缩工具，用起来也很方便。这些工具都是一搜一大把的。
 
+### 10.插件发布
+这一步不是必需的，但本着把事情做完整的态度，同时你也许也希望有更多人看到或使用你的插件吧。
 
+ 
 
+- 首先你需要将插件代码放到GitHub上创建一个Service Hook，这样做的目的是你以后更新的插件后，jQuery可以自动去获取新版本的信息然后展示在插件中心的页面上。关于如何传代码到GitHub，你去下载GitHub 提供的客户端工具，就会知道如何操作了，非常方便。关于在GitHub创建Service Hook，也只是点几下而以的事情。下面会截图介绍。
 
+- 然后需要制作一个JSON格式的清单文件，其中包括关于插件的基本信息，具体格式及参数可以在[jQuery官网插件发布指南](https://plugins.jquery.com/docs/publish/)页面了解到，这里提供一个示例文件，是我之前写的一个jQuery插件[SlipHover](https://github.com/Wayou/SlipHover)：
 
+```json
+{
+    "name": "sliphover",
+    "title": "SlipHover",
+    "description": "Apply direction aware  2D/3D hover effect to images",
+    "keywords": [
+        "direction-aware",
+        "animation",
+        "effect",
+        "hover",
+        "image",
+        "overlay",
+        "gallery"
+    ],
+    "version": "1.1.1",
+    "author": {
+        "name": "Wayou",
+        "email": "liuwayong@gmail.com",
+        "url": "https://github.com/Wayou"
+    },
+    "maintainers": [
+        {
+           "name": "Wayou",
+            "email": "liuwayong@gmail.com",
+            "url": "https://github.com/Wayou"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
+        }
+    ],
+    "bugs": "https://github.com/Wayou/sliphover/issues",
+    "homepage": "http://wayou.github.io/SlipHover/",
+    "docs": "http://wayou.github.io/SlipHover/",
+    "demo":"http://wayou.github.io/SlipHover/",
+    "download": "https://github.com/Wayou/SlipHover/zipball/master",
+    "dependencies": {
+        "jquery": ">=1.5"
+    }
+}
+```
+- 然后就可以在插件的根目录执行现行git代码来发布插件了。其中0.1.0是版本号，以后每次你的插件有新版本发布只需更新上面命令中的版本，创建新的tag，这样jQuery插件中心就会自动获取到新版本信息了
+```
+$ git tag 0.1.0
+$ git push origin --tags
+```
+### 11.GitHub Service Hook
+#### 11.1 点击项目右边菜单的设置
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/jQuery%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/1.png?raw=true)
 
+#### 11.2进入设置页面后点击'Webhooks & Services '
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/jQuery%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/2.png?raw=true)
 
+#### 11.3然后点击右边主页面上的'Configure services' 按钮
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/jQuery%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/3.png?raw=true)
 
+#### 11.4这时出现一个很长的列表，向下找到jQuery Plugins 点击
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/jQuery%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/4.png?raw=true)
 
-
-
-
-
-
-
-
-
-
-
-
+#### 11.5点击选中框后点击'更新设置'按钮
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/jQuery%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/5.png?raw=true)
 
 
 
