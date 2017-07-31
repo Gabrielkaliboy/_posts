@@ -114,4 +114,5 @@ document.getElementById("alink").click(); //既触发了a标签的点击事件�
 ### 5.png图片在Chrome、IE、Firefox、ps中颜色不一致问题
 问题描述：公司做了一个logo，结果在ps中是A颜色，IE与ps一样都是A颜色，但是放在Firefox和Chrome中颜色就不一致了。原因在于，png图片保存的时候有一个ICC配置文件，如果勾选这个选项，就会导致这个问题。
 
+关于这个问题的讨论：https://bugs.chromium.org/p/chromium/issues/detail?id=44872
 解决方法：不勾选或者直接保存为web所用格式！
