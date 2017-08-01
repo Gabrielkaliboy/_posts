@@ -153,3 +153,40 @@ border-top-color: currentColor;
 color: #1D82D2;
 }
 ```
+
+### 7.关于点击按钮显示div,然后点击页面其他区域隐藏div的实现
+首先可以给 document 对象绑定 click 事件。
+然后由于事件冒泡机制，你单击文档的任意地方（包括绿色区域）都会触发 click 事件。
+
+先在事件里写上隐藏div区域的代码
+然后，再给div区域绑定click事件，这时候阻止事件冒泡，这样一来，点击div区域的话，是不会隐藏掉自己的。
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+	<style>
+		#div1{
+			display: none;
+		}
+	</style>
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">点我显示</button>
+	<div id="div1">哈哈哈</div>
+</body>
+<script>
+$(function(){
+	$("#btn").on("click",function(e){
+		e.stopPropagation();
+		$("#div1").css("display","block");
+	});
+	$(document).on("click",function(e){
+		$("#div1").css("display","none");
+	});
+})
+</script>
+</html>
+```
