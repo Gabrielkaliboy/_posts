@@ -1,5 +1,5 @@
 ---
-title:vs code使用相关记录
+title: vs code使用相关记录
 date: 2017-06-19 09:09:40
 categories: 软件
 tags: [前端,javascript,vue]
