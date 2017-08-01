@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div href="#">鼠标放上来</div>
+    <style>
+        div {
+            position: relative;
+            outline: none;
+            text-decoration: none;
+            color: #000;
+            font-size: 32px;
+            display: inline;
+            margin-left: 20px;
+        }
+
+        div:hover::before,
+        div:hover::after {
+            position: absolute;
+        }
+
+        div:hover::before {
+            content: "\5B";
+            left: -20px;
+        }
+
+        div:hover::after {
+            content: "\5D";
+            right: -20px;
+        }
+    </style>
+</body>
+
+</html>
+<style></style>
+<script></script>

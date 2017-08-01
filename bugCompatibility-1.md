@@ -116,3 +116,40 @@ document.getElementById("alink").click(); //既触发了a标签的点击事件�
 
 关于这个问题的讨论：https://bugs.chromium.org/p/chromium/issues/detail?id=44872
 解决方法：不勾选或者直接保存为web所用格式！
+
+### 6.同时使用hover和after/before伪类
+有时候有这样的需求，当鼠标划上的时候，显示一个三角
+
+重点：**.applyItemsTabItem:hover::after**后面是两个冒号的after，记得在.applyItemsTabItem里面设置相对定位`position:relative`
+
+![](bugCompatibility/1.gif)
+```css
+.applyItemsTabItem {
+    width: 14.285%;
+    position:relative;
+    float: left;
+    text-align: center;
+    height: 100px;
+    border-bottom: 1px solid #e2d9d9;
+    border-left: 1px solid #e2d9d9;
+    border-right: 1px solid #e2d9d9;
+}
+.applyItemsTabItem:hover {
+    border-bottom: 3px solid #1D82D2;
+}
+.applyItemsTabItem:hover::after {
+border-bottom:3px solid #1D82D2;
+content: '';
+position: absolute;
+top: 100%;
+left: 42%;
+width: 0;
+height: 0;
+border-width: 11px;
+border-style: solid;
+border-color: transparent;
+margin-bottom: 1px;
+border-top-color: currentColor;
+color: #1D82D2;
+}
+```
