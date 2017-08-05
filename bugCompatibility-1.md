@@ -13,7 +13,7 @@ tags: [bug记录]
 源码：https://github.com/Gabrielkaliboy/demo/tree/master/_posts/bugCompatibility-1
 ### 1.IE浏览器文件上传返回的json会提示你下载
 如图
-![](bugCompatibility/1.png)
+![](bugCompatibility-1/1.png)
 
 解决方式：
 根据不同的后台语言进行搜索搜索，关键字
@@ -122,7 +122,7 @@ document.getElementById("alink").click(); //既触发了a标签的点击事件�
 
 重点：**.applyItemsTabItem:hover::after**后面是两个冒号的after，记得在.applyItemsTabItem里面设置相对定位`position:relative`
 
-![](bugCompatibility/1.gif)
+![](bugCompatibility-1/1.gif)
 ```css
 .applyItemsTabItem {
     width: 14.285%;
