@@ -67,17 +67,23 @@ if (reboo > 0)
 - 1.根据官网定义X-UA-compatible 标头不区分大小写；不过，它必须显示在网页中除 title 元素和其他 meta 元素以外的所有其他元素之前。如果不是的话，它不起作用。这么啰嗦，我为了简单，直接放在了header的第一个位置，亲测，可行
 - 2.content的内容是IE=8，或者IE=edge等值，注意不是IE8或者直接写个edge的值，否则不起作用。
 
-有人说这个也可以解决，以后可以测试一下
+
+#### 2.3直接让360安全浏览器以默认极速模式打开
+```html
+<meta name="renderer" content="webkit"/> ,这样闭合标签
+```
+**问题**
+如果你在加meta标签之前已经用360浏览器打开过你的网站了，360会用上一次使用的内核来渲染，也就是说浏览器记忆的渲染内核优先级要高于meta标签，清空下设置缓存什么的再试下，或者开个隐私窗口试下。
+
+#### 2.4 别人的网站用这个也可以
+
 ```html
 <meta name="renderer" content="webkit|ie-comp|ie-stand">  
 ```
-亲测上面的meta可用，他是在360安全浏览器渲染的时候直接使用chrome模式，但是如果刻意的调到IE兼容，还会乱。第一个方法，不论用户使用哪种模式（极速或者兼容），都能够正常显示。所以还是第一个方法好一些。为了让浏览器自己打开的时候直接是极速模式，我将第一个meta做了修改
+#### 2.5知识补充
+[meta name renderer content webkit无效](https://www.google.co.jp/search?q=meta+name+renderer+content+webkit%E6%97%A0%E6%95%88&sa=X&ved=0ahUKEwiTzLuawMbVAhUHfrwKHWTkDJYQ1QIIZygA&biw=1920&bih=988)
 
-```html
-<meta http-equiv="X-UA-Compatible" content="Chrome=1,IE=edge" />
-```
-将Chrome放在了第一个位置，没效果！！！！！！！！！！
-#### 2.3知识补充
+[360 meta](https://www.baidu.com/baidu?tn=null&ie=utf-8&wd=360%20meta)
 
 **关于360浏览器**
 360有极速版和安全浏览器，二者都是双核模式（IE的trident和谷歌的webkit）。极速模式默认优先使用Chrome打开页面，只有在银行系统下才会自动切换到IE模式；安全浏览器下载安装以后默认打开是IE兼容模式，也就是我们上面写的IE7兼容模式，很恶心，他还可以在地址栏那里手动切换回极速模式（Chrome）
