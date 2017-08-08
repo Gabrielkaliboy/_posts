@@ -85,6 +85,7 @@ if (reboo > 0)
 
 [360 meta](https://www.baidu.com/baidu?tn=null&ie=utf-8&wd=360%20meta)
 
+[360 meta 谷歌](https://www.google.co.jp/search?biw=1920&bih=988&q=360+meta&oq=360+meta&gs_l=psy-ab.3..0l3j0i30k1.1069941.1072169.0.1073562.8.8.0.0.0.0.220.799.0j4j1.5.0....0...1.1.64.psy-ab..3.5.798...0i12k1.fJvdug6rdIQ)
 **关于360浏览器**
 360有极速版和安全浏览器，二者都是双核模式（IE的trident和谷歌的webkit）。极速模式默认优先使用Chrome打开页面，只有在银行系统下才会自动切换到IE模式；安全浏览器下载安装以后默认打开是IE兼容模式，也就是我们上面写的IE7兼容模式，很恶心，他还可以在地址栏那里手动切换回极速模式（Chrome）
 
