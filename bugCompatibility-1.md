@@ -199,3 +199,15 @@ $(function(){
 ```
 
 ### 8.meta 标签
+
+#### 8.1
+```html
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+```
+关于这个标签在[stack overflow](https://stackoverflow.com/questions/6771258/what-does-meta-http-equiv-x-ua-compatible-content-ie-edge-do)
+
+如果你需要兼容IE9或者IE8，这个标签最好写上，如果只要求最新，比如兼容到IE11或者edge，那可以把它剔除
+
+`X-UA-Compatible`这个meta标签允许开发者设置浏览器以哪个版本的IE来进行渲染 
+
+根据Microsoft的文档说明，这个标签最好是放在header的最顶部，IE浏览器在遇到这个标签的时候，会以最新版本的IE(客户电脑上所带的最新版IE)去渲染HTML。这会导致性能问题，因为浏览器是重新去渲染HTML
