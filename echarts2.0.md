@@ -21,7 +21,7 @@ API：http://echarts.baidu.com/echarts2/doc/doc.html
 
 一个简单的饼图实例，对一些常用的参数做了解释
 
-![](echarts2.0/1.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/echarts2.0/1.gif?raw=true)
 ```html
 <!DOCTYPE html>
 <head>

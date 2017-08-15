@@ -25,13 +25,13 @@ http://www.cnblogs.com/Wayou/p/chrome_dev_tool_style_console.html
 console.clear();清空控制台
 
 ### 2.console.log的兄弟
-![](guideOfChromeConsole/1.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/2.gif?raw=true)
 - console.log:普通信息
 - console.info:提示类信息
 - console.error:错误信息
 - console.warn:警示信息
 
-![](guideOfChromeConsole/1.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/1.png?raw=true)
 
 如果再配合console.group 与console.groupEnd，可以将这种分类管理的思想发挥到极致。这适合于在开发一个规模很大模块很多很复杂的Web APP时，将各自的log信息分组到以各自命名空间为名称的组里面。
 
@@ -43,31 +43,31 @@ console.group("app.bundle");
 console.log("来自bundle模块的信息1");console.log("来自bundle模块的信息2");
 console.groupEnd();
 ```
-![](guideOfChromeConsole/2.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/2.png?raw=true)
 
 ### 3.炫酷
 另外，console.log家族还给我们提供了一个的API：第一个参数可以带一些格式化指令，比如%c,\n;看下面这个炫酷的效果：
 ```
   console.log('%chello world','font-size:25px;color:red;');
 ```
-![](guideOfChromeConsole/4.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/4.png?raw=true)
 还可以加入更多的css样式
 ```
 	
 console.log('%chello world', 'background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );color:transparent;-webkit-background-clip: text;font-size:5em;');
 ```
-![](guideOfChromeConsole/3.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/3.png?raw=true)
 
 ### 一个复杂的例子
 ```
 var a = 0; console.log('%cscript Activated....', 'font-size:100px;color:#fff;text-shadow:0 1px 0#ccc,0 2px 0  #c9c9c9 ,0 3px 0  #bbb ,0 4px 0  #b9b9b9 ,0 5px 0  #aaa ,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);'); setInterval(function () { var h = new Date(). getHours(); var m = new Date(). getMinutes(); var s = new Date(). getSeconds(); console.log(h + ":" + m + ":" + s); }, 1000); var i = setTimeout(function () {if (window.location.href.indexOf('') > -1) {alert('Please, When we to do autobuy, Do not refresh your browser or click any button until sale begins.we will get added to your cart automatically.');} else {alert('Invalid Page or Invalid URL');} a++; $(".jbv-buy-big, .jbv-reserve"). trigger("click"); if ((a % 5000) == 0) {console.log("Ticks: (x5000): " + a / 5000); }; if ($(".jbv-buy-big, .jbv-reserve").length > 0) {console.log("success!!!!"); } }, 1); console.log("Id: " + i); console.log("Tick count: " + a);
 ```
-![](guideOfChromeConsole/14.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/14.png?raw=true)
 
 ```
 console.log("%cColorful CSS","background: rgba(252,234,187,1);background: -moz-linear-gradient(left, rgba(252,234,187,1) 0%, rgba(175,250,77,1) 12%, rgba(0,247,49,1) 28%, rgba(0,210,247,1) 39%,rgba(0,189,247,1) 51%, rgba(133,108,217,1) 64%, rgba(177,0,247,1) 78%, rgba(247,0,189,1) 87%, rgba(245,22,52,1) 100%);background: -webkit-gradient(left top, right top, color-stop(0%, rgba(252,234,187,1)), color-stop(12%, rgba(175,250,77,1)), color-stop(28%, rgba(0,247,49,1)), color-stop(39%, rgba(0,210,247,1)), color-stop(51%, rgba(0,189,247,1)), color-stop(64%, rgba(133,108,217,1)), color-stop(78%, rgba(177,0,247,1)), color-stop(87%, rgba(247,0,189,1)), color-stop(100%, rgba(245,22,52,1)));background: -webkit-linear-gradient(left, rgba(252,234,187,1) 0%, rgba(175,250,77,1) 12%, rgba(0,247,49,1) 28%, rgba(0,210,247,1) 39%, rgba(0,189,247,1) 51%, rgba(133,108,217,1) 64%, rgba(177,0,247,1) 78%, rgba(247,0,189,1) 87%, rgba(245,22,52,1) 100%);background: -o-linear-gradient(left, rgba(252,234,187,1) 0%, rgba(175,250,77,1) 12%, rgba(0,247,49,1) 28%, rgba(0,210,247,1) 39%, rgba(0,189,247,1) 51%, rgba(133,108,217,1) 64%, rgba(177,0,247,1) 78%, rgba(247,0,189,1) 87%, rgba(245,22,52,1) 100%);background: -ms-linear-gradient(left, rgba(252,234,187,1) 0%, rgba(175,250,77,1) 12%, rgba(0,247,49,1) 28%, rgba(0,210,247,1) 39%, rgba(0,189,247,1) 51%, rgba(133,108,217,1) 64%, rgba(177,0,247,1) 78%, rgba(247,0,189,1) 87%, rgba(245,22,52,1) 100%);background: linear-gradient(to right, rgba(252,234,187,1) 0%, rgba(175,250,77,1) 12%, rgba(0,247,49,1) 28%, rgba(0,210,247,1) 39%, rgba(0,189,247,1) 51%, rgba(133,108,217,1) 64%, rgba(177,0,247,1) 78%, rgba(247,0,189,1) 87%, rgba(245,22,52,1) 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#f51634', GradientType=1 );font-size:5em")
 ```
-![](guideOfChromeConsole/15.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/15.png?raw=true)
 ### 还可以是图片
 比如这张
 ![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/1.gif?raw=true)
@@ -75,14 +75,14 @@ console.log("%cColorful CSS","background: rgba(252,234,187,1);background: -moz-l
 console.log("%c", "padding:100px 300px;line-height:250px;background:url('https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/1.gif?raw=true') no-repeat;");
 ```
 
-![](guideOfChromeConsole/5.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/5.png?raw=true)
 
 ### 4.console.table可以让我们输出表格
 ```
 var data = {code:200,content:[{'品名': '杜雷斯', '数量': 4}, {'品名': '冈本', '数量': 3}]};
 console.table(data.content);
 ```
-![](guideOfChromeConsole/6.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/6.png?raw=true)
 有的时候后端传回来一大串数据，是不是觉得直接console.log或是通过抓包工具查看都会让人晕头转向呢，这个时候正事console.table发挥作用的时候了，以表格的形式呈现数据，自然一目了然。
 
 
@@ -92,7 +92,7 @@ console.table(data.content);
 var isDebug=false;
 console.assert(isDebug,'开发中的log信息。。。');
 ```
-![](guideOfChromeConsole/7.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/7.png?raw=true)
 
 ### 6.console.count
 除了条件输出的场景，还有常见的场景是计数。当你想统计某段代码执行了多少次时也大可不必自己去写相关逻辑，内置的console.count可以很地胜任这样的任务。
@@ -105,7 +105,7 @@ foo();
 foo();
 foo();
 ```
-![](guideOfChromeConsole/8.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/8.png?raw=true)
 
 
 ### 7.console.dir
@@ -114,7 +114,7 @@ foo();
   console.dir(document.body);
   console.log(document.body);
 ```
-![](guideOfChromeConsole/9.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/9.png?raw=true)
 
 
 ### 8.console.time & console.timeEnd
@@ -128,7 +128,7 @@ for (var i = array.length - 1; i >= 0; i--) {
 };
 console.timeEnd("Array耗时");
 ```
-![](guideOfChromeConsole/10.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/10.png?raw=true)
 
 
 当然，我们也可以选择自己写代码来计时：
@@ -140,7 +140,7 @@ for (var i = array.length - 1; i >= 0; i--) {
 };
 console.log(new Date().getTime()-start);
 ```
-![](guideOfChromeConsole/11.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/11.png?raw=true)
 
 通过调用内置的console.time
 得到的结果要比自己手动计算的时间差更精确可靠。
@@ -172,7 +172,7 @@ $x("//p");
 $x("//p[a]");
 ```
 x(“//p[a]”);匹配所有子节点包含a的p节点
-![](guideOfChromeConsole/12.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/12.png?raw=true)
 
 ### copy
 ```
@@ -191,7 +191,7 @@ var tfboy={name:'wayou',gender:'unknown',hobby:'opposite to the gender'};
 keys(tfboy);
 values(tfboy);
 ```
-![](guideOfChromeConsole/13.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/guideOfChromeConsole/13.png?raw=true)
 
 ### monitor & unmonitor
 monitor(function)，它接收一个函数名作为参数，比如function a,每次a被执行了，都会在控制台输出一条信息，里面包含了函数的名称a及执行时所传入的参数。而unmonitor(function)便是用来停止这一监听。

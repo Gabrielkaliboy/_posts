@@ -37,7 +37,7 @@ Datatables是一款jquery表格插件。它是一个高度灵活的工具，可�
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" >
 ```
 一个简单的demo1.html,注意涉及到ajax请求，涉及到同源策略了，所以要在本地服务器上跑,效果如图：
-![](jQueryDataTables1.10.0/1.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/jQueryDatatables1.10.0/1.gif?raw=true)
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -922,7 +922,7 @@ arrays.txt文件
 #### 5.实现表格内容超出隐藏（有坑）
 最终效果：
 
-![](jQueryDatatables1.10.0/2.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/jQueryDatatables1.10.0/2.gif?raw=true)
 
 ##### 5.1css样式
 我们知道，使用css样式就可以实现超出内容隐藏并且用省略号代替，如下

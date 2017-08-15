@@ -18,19 +18,19 @@ vsCode
 #### 1.View In Browser
 用来在vs code里面预览html文件，默认的快捷键Ctrl+F1
 注：只支持html文件
-![](vsCode/1.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/vsCode/1.gif?raw=true)
 
 #### Open in Browser
 也是用来在浏览器中事先预览的
 
 #### 2.Auto Rename Tag
 修改html标签，自动帮你完成尾部闭合标签的同步修改
-![](vsCode/2.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/vsCode/2.gif?raw=true)
 
 
 #### 3.Auto close Tag
 自动闭合标签
-![](vsCode/3.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/vsCode/3.gif?raw=true)
 
 #### 4.Path intellisense
 用来路径提示的
@@ -103,14 +103,14 @@ vsCode
 	```
 	- 将配置文件改好了以后，就可以使用了，记得调试的时候选择我们刚才改的那个
 
-![](vsCode/4.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/vsCode/4.gif?raw=true)
 
 #### OneDark Pro
 说明：用来更改主题的
 地址：https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme
 官网：https://binaryify.github.io/OneDark-Pro/#/
 使用说明：Ctrl+k,然后在Ctrl+t
-![](vsCode/5.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/vsCode/5.gif?raw=true)
 
 
 
@@ -128,7 +128,7 @@ vs code+xampp+php搭建php开发调试环境
 
 #### 2.下载xdebug
 去 https://xdebug.org/download.php 下载php对应版本的插件，php版本可以在xampp中的readme看到，下载这个PHP 5.6 VC11 TS (32 bit) 把dll文件拷贝到php(xampp文件目录下面的php文件夹)目录
-![](vsCode/1.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/vsCode/1.png?raw=true)
 
 #### 3.配置php.ini
 在xampp安装目录的php文件夹下面找到php.ini,加入如下代码,其中zend_extension的路径改为我们正确的位置，配置完成后重启apache服务器
@@ -139,14 +139,14 @@ xdebug.remote_enable = 1
 xdebug.remote_autostart = 1
 ``` 
 #### 4.第一次安装vs会提示这个，需要配置下php.exe的路径，在用户设置里添加以下项
-![](vsCode/2.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/vsCode/2.png?raw=true)
 
 打开文件--->首选项---->设置，填入真是的php.exe路径
 
-![](vsCode/3.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/vsCode/3.png?raw=true)
 
 #### 5.在vscode中的php文件打一断点，点Listen for XDebug 项目的运行，配置不用更改，默认就可以
-![](vsCode/4.png) 
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/vsCode/4.png?raw=true) 
 
 #### 6.php文件要做xampp对应的目录下，直接在浏览器运行，注意是服务器地址，然后打断点就可以调试了
 直接在浏览器中打开要调试的php（不是文件路径而是服务器的地址(http://127.0.0.1/test.php)）,vscode就会命中到打断点的地方

@@ -66,10 +66,10 @@ API文档：http://www.treejs.cn/v3/api.php
 </BODY>
 </HTML>
 ```
-![](zTree/1.gif)
+![](https://github.com//Gabrielkaliboy/images/blob/master/_posts/zTree/1.gif?raw=true)
 
 #### 3.实际项目中的一个应用
-![](zTree/2.gif)
+![](https://github.com//Gabrielkaliboy/images/blob/master/_posts/zTree/2.gif?raw=true)
 使用ajax请求，动态添加dom树结构，替换了默认图标
 html
 ```html

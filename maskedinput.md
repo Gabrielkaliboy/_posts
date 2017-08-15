@@ -14,7 +14,7 @@ tags: [jQuery,前端开发插件,html,表单样式优化]
 GitHub：https://github.com/digitalBush/jquery.maskedinput
 官网：http://digitalbush.com/projects/masked-input-plugin/
 
-![](maskedinput/maskedInput.png)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/maskedinput/maskedInput.png?raw=true)
 
 **masked-input**是一个字符输入格式化的jQuery插件。它可让你轻松的实现对各种数据的输入进行格式限制，如日期、电话等。masked-input在ie,Firefox,Safari和Chrome通过测试。mask会自动为用户输入类型占位符且用户将不能删除。以下为占位符的代表意义。
 - a代表一个字符（A-Z，a-z）
@@ -27,7 +27,7 @@ GitHub：https://github.com/digitalBush/jquery.maskedinput
 
 #### 2. 使用方法
 效果图
-![](maskedinput/2.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/maskedinput/2.gif?raw=true)
 - 引入jQuery和maskedinput.js文件
 ```javascript
     <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>
@@ -69,7 +69,7 @@ GitHub：https://github.com/digitalBush/jquery.maskedinput
 ```
 
 #### 3.修改占位符，默认的占位符号为下划线"_",我们分别修改为用0占位，用*占位
-![](maskedinput/1.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/maskedinput/1.gif?raw=true)
 代码
 ```html
 <!DOCTYPE html>
@@ -96,7 +96,7 @@ GitHub：https://github.com/digitalBush/jquery.maskedinput
 ```
 
 #### 4. 当文本框输入完毕以后，触发一个函数
-![](maskedinput/3.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/maskedinput/3.gif?raw=true)
 代码：
 ```html
 <!DOCTYPE html>
@@ -124,10 +124,10 @@ GitHub：https://github.com/digitalBush/jquery.maskedinput
 #### 5. 当文本框输入不完整的时候，不自动清空输入内容
 ！！！这个功能在1.3.1版本不支持，1.4.0可以
 默认情况下，autoclear:true，所以当输入不全时候，会清空输入框，只有全部输入才不会清空，如下图
-![](maskedinput/4.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/maskedinput/4.gif?raw=true)
 
 我们将autoclear:false，以后，输入不完整也不会清空输入框
-![](maskedinput/5.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/maskedinput/5.gif?raw=true)
 
 代码：
 ```html
@@ -152,7 +152,7 @@ GitHub：https://github.com/digitalBush/jquery.maskedinput
 ```
 #### 6. 你可以设置自己的代替规则
 我定义了符号"~"代表"+"或者"-"号，下面这个例子，第一个字符只能输入+或者-
-![](maskedinput/6.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/maskedinput/6.gif?raw=true)
 代码：
 ```html
 <!DOCTYPE html>
@@ -179,7 +179,7 @@ GitHub：https://github.com/digitalBush/jquery.maskedinput
 
 #### 7. 使用特殊符号"?",实现部分使用masked
 ？后面的输入内容可有可无
-![](maskedinput/7.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/maskedinput/7.gif?raw=true)
 代码：
 ```
 <!DOCTYPE html>
@@ -203,7 +203,7 @@ GitHub：https://github.com/digitalBush/jquery.maskedinput
 
 #### 8. 系统本书自带的占位符不满足你的需求，比如我们想限制输入16进制，我们就可以自己定制一个。
 关键代码：`$.mask.definitions['h'] = "[A-Fa-f0-9]";`
-![](maskedinput/8.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/maskedinput/8.gif?raw=true)
 代码：
 ```html
 <!DOCTYPE html>

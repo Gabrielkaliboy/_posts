@@ -125,12 +125,12 @@ GitHub：https://github.com/jquery-validation/jquery-validation
 #### 3.一个完整的注册示例（没有验证码）
 GitHub地址：https://github.com/Gabrielkaliboy/markdown/tree/master/demo/jQuery-validate/register
 
-![](jQuery-validate/1.gif);
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/jQuery-validate/1.gif?raw=true);
 
 #### 4.分步校验(版权所有，转载注明出处)
 GitHub地址：
 
-![](jQuery-validate/2.gif);
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/jQuery-validate/2.gif?raw=true);
 
 #### 5.注意事项
 ##### 5.1关于select的required校验问题

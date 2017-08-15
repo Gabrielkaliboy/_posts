@@ -8,7 +8,6 @@ tags: [less]
 less学习
 <!-- more -->
 <The rest of contents | 余下全文>
-
 -----
 
 网址：http://lesscss.cn/
@@ -32,7 +31,7 @@ less学习
 #### kaola使用
 - 将软件设置为中文
 	- 设置好了以后，再次打开的时候就是英文了
-![](less/1.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/less/1.gif?raw=true)
 
 - 新建一个项目的工程目录，比如我们叫less文件夹，在style里新建一个 main.less文件
 	- 里面有style文件
@@ -40,19 +39,19 @@ less学习
 
 - 将less文件夹整体拖进kaola，如图所示
 
-![](less/2.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/less/2.gif?raw=true)
 
 - 设置编译less文件以后的输出路径
-![](less/3.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/less/3.gif?raw=true)
 
 - 执行以下编译，如果显示success，那就是成功了
-![](less/4.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/less/4.gif?raw=true)
 
 - 打开style文件夹，就可以看到main.css文件了，将我们的main.css引入我们相应的html里面就可以用了，写的时候直接在less里面写，他会直接将css生成输出到main.css里面。
 
 - 在koala里面还有一个设置输出的方式，normal表示输出的就是正常的css,compress表示输出压缩以后的css
 
-![](less/1.png) 
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/less/1.png?raw=true) 
 
 
 #### less注释

@@ -275,7 +275,7 @@ try {
 
 - 一个简单的例子
 效果图
-![](dragColumn/1.gif)
+![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/dragColumn/1.gif?raw=true)
 
 ```html
 <!DOCTYPE html>
