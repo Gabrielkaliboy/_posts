@@ -11,7 +11,7 @@ tags: [bug记录]
 
 -----
 
-#### 使用css3做三角
+### 1.使用css3做三角
 使用border-color:让哪个方向有三角，就把哪个位置加上颜色，比如下面这个是向下的。下面这写法在高版本浏览器中是没有问题的，但是IE6不行，会显示黑色的方块
 
 ```css
@@ -39,7 +39,7 @@ tags: [bug记录]
 
 ```
 
-#### 将某个元素存入数组
+### 2.将某个元素存入数组
 注意push函数的返回值是存入目标数组的长度，如下
 ```javascript
 var xx=[],
@@ -55,5 +55,26 @@ var xx=[];
 xx.push(1);
 console.log(xx);
 //[1]
+```
+
+### 3.IE8中删除对象的属性
+
+```javascript
+// Create an object and add expando properties.  
+var myObj = new Object();  
+myObj.name = "Fred";  
+myObj.count = 42;  
+
+// Delete the properties from the object.  
+delete myObj.name;  
+delete myObj["count"];  
+
+// Print the results.  
+document.write ("name: " + myObj.name);  
+document.write ("<br />");  
+document.write ("count: " + myObj.count);  
+// Output:  
+//  name: undefined  
+//  count: undefined  
 ```
 
