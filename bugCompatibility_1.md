@@ -212,6 +212,7 @@ $(function(){
 部分资料：
 https://stackoverflow.com/questions/10903989/could-not-complete-the-operation-due-to-error-80020101-ie
 
+https://stackoverflow.com/questions/4918969/ajax-request-problem-error-80020101/10275316#10275316
 
 ![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/bugCompatibility_1/2.png?raw=true)
 
