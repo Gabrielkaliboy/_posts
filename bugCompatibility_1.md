@@ -207,10 +207,15 @@ $(function(){
 
 ### 9. jQuery 1.9 最后支持 IE 6/7/8 的版本
 
-### 10.IE8 缺少标识符、字符串或数字
+### 10.IE8 缺少标识符、字符串或数字、高版本直接报80020101
+
+部分资料：
+https://stackoverflow.com/questions/10903989/could-not-complete-the-operation-due-to-error-80020101-ie
+
+
 ![](https://github.com/Gabrielkaliboy/images/blob/master/_posts/bugCompatibility_1/2.png?raw=true)
 
-IE早期浏览器对于格式校验比较严，如果出现SCRIPT1028: 缺少标识符、字符串或数字的错误很大可能是因为多了逗号或者分号什么的，比如：
+#### 10.1 IE早期浏览器对于格式校验比较严，如果出现SCRIPT1028: 缺少标识符、字符串或数字的错误很大可能是因为多了逗号或者分号什么的，比如：
 
 ```javascript
 var a = {  
@@ -220,7 +225,7 @@ var a = {
 ```
 y:2后面多了个逗号，这在Firefox或者chrome浏览器及新的IE浏览器都正常，但是IE8以下浏览器是会报错的。直接去掉就可以
 
-
+#### 10.2 IE8及以下浏览器，不能用const作为json的key
 **还有一种情况**
 ```javascript
 tool:{  
@@ -229,4 +234,5 @@ tool:{
     }  
      }  
 ```
-问题出在这行代码上，IE8及以下浏览器，不能用const作为json的key
+
+#### 10.3 还有可能就是注释引起的
